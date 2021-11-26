@@ -10,10 +10,24 @@
       </svg>
     </div>
     <div class="category flex flex-row">
-      <div>Home</div>
-      <div>HeadPhones</div>
-      <div>Speakers</div>
-      <div>Earphones</div>
+      <div>
+        <router-link class="link" :to="{ name: 'Home' }"> Home </router-link>
+      </div>
+      <div>
+        <router-link class="link" :to="{ name: 'Headphones' }">
+          Headphones
+        </router-link>
+      </div>
+      <div>
+        <router-link class="link" :to="{ name: 'Speakers' }">
+          Speakers
+        </router-link>
+      </div>
+      <div>
+        <router-link class="link" :to="{ name: 'Earphones' }">
+          Earphones
+        </router-link>
+      </div>
     </div>
     <div class="cart">
       <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +48,7 @@ export default {};
 <style lang="scss" scoped>
 .navbar {
   width: 1440px;
+  height: 96px;
   border-bottom: 1px solid #979797;
   margin: 0 auto;
   justify-content: space-between;
@@ -52,6 +67,11 @@ export default {};
   .category {
     gap: 34px;
     text-transform: uppercase;
+  }
+
+  .link {
+    text-decoration: none;
+    color: #ffffff;
   }
 }
 </style>

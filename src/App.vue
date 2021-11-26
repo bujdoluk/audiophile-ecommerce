@@ -35,6 +35,13 @@ export default {};
   flex-direction: row;
 }
 
+h4 {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 1.28571px;
+}
+
 .black {
   color: #000000;
 }
@@ -72,6 +79,8 @@ export default {};
   border: none;
   font-weight: bold;
   cursor: pointer;
+  width: 160px;
+  height: 48px;
 }
 
 .btn-orange:hover {
@@ -127,5 +136,57 @@ export default {};
 
 .btn-shop:hover {
   color: #d87d4a;
+}
+
+.new {
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 10px;
+}
+
+.new-orange {
+  color: #d87d4a;
+  text-transform: uppercase;
+
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 10px;
+}
+
+.name {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 56px;
+}
+.text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  opacity: 0.5;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.back {
+  margin: 0 auto;
+  margin-top: 79px;
+
+  width: 1110px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 25px;
+
+  /* identical to box height, or 167% */
+
+  color: #000000;
+
+  mix-blend-mode: normal;
+  opacity: 0.5;
 }
 </style>

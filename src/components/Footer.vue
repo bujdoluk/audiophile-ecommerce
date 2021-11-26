@@ -20,10 +20,24 @@
     </div>
     <div class="footer-right flex flex-column">
       <div class="flex flex-row category">
-        <div>Home</div>
-        <div>Headphones</div>
-        <div>Speakers</div>
-        <div>Earphones</div>
+        <div>
+          <router-link class="link" :to="{ name: 'Home' }"> Home </router-link>
+        </div>
+        <div>
+          <router-link class="link" :to="{ name: 'Headphones' }">
+            Headphones
+          </router-link>
+        </div>
+        <div>
+          <router-link class="link" :to="{ name: 'Speakers' }">
+            Speakers
+          </router-link>
+        </div>
+        <div>
+          <router-link class="link" :to="{ name: 'Earphones' }">
+            Earphones
+          </router-link>
+        </div>
       </div>
       <div class="flex flex-row social-media">
         <div>
@@ -99,6 +113,11 @@ export default {};
       justify-content: flex-end;
       gap: 16px;
     }
+  }
+
+  .link {
+    text-decoration: none;
+    color: #ffffff;
   }
 }
 </style>

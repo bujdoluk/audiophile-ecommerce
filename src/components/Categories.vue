@@ -90,7 +90,7 @@ export default {};
   width: 1110px;
   height: 284px;
   background-color: #ffffff;
-  margin: 160px auto;
+  margin: 110px auto;
   gap: 30px;
   justify-content: center;
   align-items: center;
@@ -114,12 +114,5 @@ export default {};
     top: -50px;
     right: 80px;
   }
-}
-
-h4 {
-  text-transform: uppercase;
-  font-size: 18px;
-  line-height: 25px;
-  letter-spacing: 1.28571px;
 }
 </style>
