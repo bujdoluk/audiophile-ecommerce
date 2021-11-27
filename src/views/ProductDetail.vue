@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <Navbar />
-    <div class="back">Go back</div>
+    <div class="back" @click="back()">Go back</div>
     <div class="content flex flex-column">
       <section class="product flex flex-row">
         <div class="product-left">
@@ -120,9 +120,15 @@ import Gear from "../components/Gear.vue";
 import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
 import Youmaylike from "../components/Youmaylike.vue";
+import router from "vue-router";
 export default {
   name: "ProductDetail",
   components: { Navbar, Gear, Footer, Categories, Youmaylike },
+  methods: {
+    back() {
+      history.back();
+    },
+  },
 };
 </script>
 
@@ -143,6 +149,10 @@ export default {
     text-transform: uppercase;
     align-items: center;
     justify-content: center;
+  }
+
+  .back {
+    cursor: pointer;
   }
 
   .content {
@@ -191,6 +201,10 @@ export default {
               font-weight: bold;
             }
 
+            .input:hover {
+              cursor: pointer;
+            }
+
             /* Chrome, Safari, Edge, Opera */
             input::-webkit-outer-spin-button,
             input::-webkit-inner-spin-button {
@@ -210,6 +224,11 @@ export default {
               justify-content: center;
               align-items: center;
               font-weight: bold;
+            }
+
+            .value-button:hover {
+              color: #d87d4a;
+              cursor: pointer;
             }
           }
         }

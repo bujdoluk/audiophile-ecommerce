@@ -1,12 +1,28 @@
 <template>
-  <div class="app">
-    <router-view />
-    <Home />
+  <div class="app flex">
+    <div class="app-content flex">
+      <transition name="cart">
+        <CartModal v-if="cartModal" />
+      </transition>
+
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+import Navbar from "./components/Navbar.vue";
+import CartModal from "./views/CartModal.vue";
+export default {
+  components: {
+    Navbar,
+    CartModal,
+  },
+  computed: {
+    ...mapState(["cartModal"]),
+  },
+};
 </script>
 
 <style lang="scss">
@@ -21,6 +37,11 @@ export default {};
 .app {
   width: 100vw;
   background-color: #f2f2f2;
+
+  .app-content {
+    flex: 1;
+    position: relative;
+  }
 }
 
 .flex {
@@ -33,13 +54,6 @@ export default {};
 
 .flex-row {
   flex-direction: row;
-}
-
-h4 {
-  text-transform: uppercase;
-  font-size: 18px;
-  line-height: 25px;
-  letter-spacing: 1.28571px;
 }
 
 .black {
@@ -172,6 +186,17 @@ h4 {
   font-size: 18px;
 }
 
+.price-small {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 25px;
+  color: #000000;
+
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
 .back {
   margin: 0 auto;
   margin-top: 79px;
@@ -188,5 +213,85 @@ h4 {
 
   mix-blend-mode: normal;
   opacity: 0.5;
+}
+
+.right {
+  margin-right: 16px;
+}
+
+.long {
+  width: 634px;
+}
+
+input {
+  width: 309px;
+  height: 56px;
+  background: #ffffff;
+  border: 2px solid #cfcfcf;
+  border-radius: 8px;
+
+  margin-bottom: 24px;
+}
+
+input:focus {
+  border-color: #d87d4a;
+  outline: none !important;
+}
+
+label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.214286px;
+  margin-bottom: 9px;
+  color: #000000;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: 1.14286px;
+  text-transform: uppercase;
+  margin-bottom: 41px;
+}
+
+h4 {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 1.28571px;
+}
+
+h5 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 25px;
+  margin-bottom: 16px;
+  letter-spacing: 0.928571px;
+  text-transform: uppercase;
+
+  color: #d87d4a;
+}
+
+h6 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 25px;
+  color: #000000;
+}
+
+// animate transition
+.cart-enter-active,
+.cart-leave-active {
+  transition: 0.8s ease all;
+}
+.cart-enter-from,
+.cart-leave-to {
+  transform: translateX(-700px);
 }
 </style>

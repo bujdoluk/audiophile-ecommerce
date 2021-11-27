@@ -4,6 +4,7 @@ import Headphones from '../views/Headphones.vue'
 import Earphones from '../views/Earphones.vue'
 import Speakers from '../views/Speakers.vue'
 import ProductDetail from '../views/ProductDetail.vue'
+import Checkout from '../views/Checkout.vue'
 
 const routes = [
   {
@@ -44,6 +45,14 @@ const routes = [
     component: ProductDetail,
     meta: {
       title: "ProductDetail",
+    }
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout,
+    meta: {
+      title: "Checkout",
     }
   }
 ]
