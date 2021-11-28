@@ -4,7 +4,9 @@
       <transition name="cart">
         <CartModal v-if="cartModal" />
       </transition>
-
+      <transition name="thankyou">
+        <ThankyouModal v-if="thankyouModal" />
+      </transition>
       <router-view />
     </div>
   </div>
@@ -14,13 +16,15 @@
 import { mapState } from "vuex";
 import Navbar from "./components/Navbar.vue";
 import CartModal from "./views/CartModal.vue";
+import ThankyouModal from "./views/ThankyouModal.vue";
 export default {
   components: {
     Navbar,
     CartModal,
+    ThankyouModal,
   },
   computed: {
-    ...mapState(["cartModal"]),
+    ...mapState(["cartModal", "thankyouModal"]),
   },
 };
 </script>
@@ -129,8 +133,8 @@ export default {
 }
 
 .btn-black:hover {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #4c4c4c;
+  color: #ffffff;
 }
 
 .btn-shop {
@@ -292,6 +296,15 @@ h6 {
 }
 .cart-enter-from,
 .cart-leave-to {
-  transform: translateX(-700px);
+  transform: translateX(-2000px);
+}
+
+.thankyou-enter-active,
+.thankyou-leave-active {
+  transition: 0.8s ease all;
+}
+.thankyou-enter-from,
+.thankyou-leave-to {
+  transform: translateX(-2000px);
 }
 </style>

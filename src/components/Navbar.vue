@@ -48,10 +48,10 @@ import { mapMutations } from "vuex";
 export default {
   name: "Navbar",
   methods: {
-    ...mapMutations(["TOGGLE_CART"]),
+    ...mapMutations(["TOGGLE_CART_MODAL"]),
 
     newCart() {
-      this.TOGGLE_CART();
+      this.TOGGLE_CART_MODAL();
     },
   },
 };
@@ -61,6 +61,9 @@ export default {
 .nav {
   margin: 0 auto;
   background-color: #000000;
+  z-index: 3;
+  position: fixed;
+  width: 100vw;
   .navbar {
     width: 1440px;
     height: 96px;

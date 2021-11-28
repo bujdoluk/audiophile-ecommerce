@@ -61,6 +61,7 @@ export default {
     text-transform: uppercase;
     align-items: center;
     justify-content: center;
+    margin-top: 60px;
   }
 
   .content {

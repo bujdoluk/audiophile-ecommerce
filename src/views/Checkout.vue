@@ -158,7 +158,9 @@
             <div class="grey">Grand total</div>
             <div class="price"><span>$ 50</span></div>
           </div>
-          <button class="btn-orange btn">Continue & pay</button>
+          <button type="submit" @click="thankyouModal" class="btn-orange btn">
+            Continue & pay
+          </button>
         </div>
       </div>
     </div>
@@ -168,12 +170,18 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-
+import { mapMutations } from "vuex";
 import Footer from "../components/Footer.vue";
 export default {
   name: "Checkout",
   components: { Navbar, Footer },
   methods: {
+    ...mapMutations(["TOGGLE_THANKYOU_MODAL"]),
+
+    thankyouModal() {
+      this.TOGGLE_THANKYOU_MODAL();
+    },
+
     back() {
       history.back();
     },
@@ -186,9 +194,14 @@ export default {
   .back {
     width: 1110px;
     margin: 0 auto;
-    margin-top: 79px;
+    margin-top: 128px;
     margin-bottom: 38px;
     cursor: pointer;
+  }
+
+  .back:hover {
+    color: #d87d4a;
+    font-weight: bold;
   }
 
   .content {
@@ -207,12 +220,19 @@ export default {
       .billing {
         .billing-details {
           flex-wrap: wrap;
+
+          input {
+            cursor: pointer;
+          }
         }
       }
 
       .shipping {
         .shipping-details {
           flex-wrap: wrap;
+          input {
+            cursor: pointer;
+          }
         }
       }
 
@@ -226,6 +246,10 @@ export default {
         .right {
           .right-details {
             position: relative;
+
+            input {
+              cursor: pointer;
+            }
 
             .placeholder {
               position: absolute;

@@ -13,7 +13,7 @@
         </div>
         <div class="headphone-right flex flex-column">
           <div class="new-orange">new product</div>
-          <div class="name">XX99 mark II heaphones</div>
+          <div class="name">XX99 Mark II Headphones</div>
           <div class="text">
             The new XX99 Mark II headphones is the pinnacle of pristine audio.
             It redefines your premium heaphone experience by repdocusing the
@@ -100,6 +100,7 @@ export default {
     text-transform: uppercase;
     align-items: center;
     justify-content: center;
+    margin-top: 60px;
   }
 
   .content {

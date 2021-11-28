@@ -152,7 +152,15 @@ export default {
   }
 
   .back {
+    width: 1110px;
+    margin: 0 auto;
+    margin-top: 128px;
     cursor: pointer;
+  }
+
+  .back:hover {
+    color: #d87d4a;
+    font-weight: bold;
   }
 
   .content {

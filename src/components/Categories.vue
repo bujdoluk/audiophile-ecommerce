@@ -106,6 +106,7 @@ export default {};
   align-items: center;
   gap: 20px;
   margin: 0 auto;
+  cursor: pointer;
 
   .img {
     width: 180px;

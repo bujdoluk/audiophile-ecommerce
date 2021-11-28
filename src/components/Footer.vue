@@ -97,6 +97,7 @@ export default {};
   color: #ffffff;
   padding: 75px 165px 48px 165px;
   margin: 0 auto;
+  width: 100vw;
 
   .footer-left {
     gap: 36px;
