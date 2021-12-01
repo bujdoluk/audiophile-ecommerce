@@ -148,6 +148,9 @@ export default {
     margin: 0 auto;
     background-color: #000000;
     z-index: 3;
+    @media only screen and (max-width: 768px) {
+      width: 768px;
+    }
     .navbar {
       width: 1440px;
       border-bottom: 1px solid #979797;
@@ -161,6 +164,10 @@ export default {
       padding: 30px 0;
       letter-spacing: 2px;
       background-color: #000000;
+      @media only screen and (max-width: 768px) {
+        width: 768px;
+        padding: 30px 40px;
+      }
 
       .logo {
         font-weight: bold;
@@ -196,10 +203,22 @@ export default {
 
     &-details {
       z-index: 2;
+      @media only screen and (max-width: 768px) {
+        position: relative;
+        width: 379px;
+        margin-left: 194px;
+      }
+
       .left {
         flex-basis: 50%;
         gap: 24px;
         justify-content: center;
+        @media only screen and (max-width: 768px) {
+          flex-basis: 100%;
+          z-index: 3;
+          text-align: center;
+          margin-top: 216px;
+        }
         .new {
           text-transform: uppercase;
           opacity: 0.5;
@@ -229,6 +248,14 @@ export default {
 
     .right {
       flex-basis: 50%;
+      @media only screen and (max-width: 768px) {
+        flex-basis: 100%;
+        position: absolute;
+        top: 100px;
+        left: -100px;
+        z-index: 2;
+        transform: scale(130%);
+      }
     }
   }
 
@@ -243,6 +270,9 @@ export default {
     background-image: url(../assets/home/desktop/pattern-circles.svg);
     background-repeat: no-repeat;
     background-position-x: -90%;
+    @media only screen and (max-width: 768px) {
+      width: 768px;
+    }
 
     .speaker-left {
       flex-basis: 50%;

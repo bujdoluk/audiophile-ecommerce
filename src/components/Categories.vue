@@ -94,6 +94,11 @@ export default {};
   gap: 30px;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    width: 768px;
+    margin-left: 0;
+    gap: 5px;
+  }
 }
 
 .item {
@@ -107,6 +112,11 @@ export default {};
   gap: 20px;
   margin: 0 auto;
   cursor: pointer;
+  @media only screen and (max-width: 768px) {
+    width: 223px;
+    gap: 5px;
+    height: 165px;
+  }
 
   .img {
     width: 180px;
@@ -114,6 +124,11 @@ export default {};
     position: absolute;
     top: -50px;
     right: 80px;
+    @media only screen and (max-width: 768px) {
+      width: 100px;
+      height: 106px;
+      right: 65px;
+    }
   }
 }
 </style>

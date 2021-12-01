@@ -15,6 +15,9 @@ export default createStore({
     }
   },
   actions: {
+    async GET_EARPHONES({ state }) {
+
+    }
   },
   modules: {
   }

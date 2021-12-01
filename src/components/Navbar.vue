@@ -64,6 +64,7 @@ export default {
   z-index: 3;
   position: fixed;
   width: 100vw;
+
   .navbar {
     width: 1440px;
     height: 96px;
@@ -78,6 +79,9 @@ export default {
     padding: 35px 0;
     letter-spacing: 2px;
     background-color: #000000;
+    @media only screen and (max-width: 768px) {
+      padding: 35px 40px;
+    }
 
     .logo {
       font-weight: bold;
