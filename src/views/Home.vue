@@ -66,7 +66,7 @@
       </div>
     </div>
     <Categories />
-    <section class="speaker flex flex-row">
+    <section class="speaker flex">
       <div class="speaker-left">
         <img
           class="img-speaker"
@@ -260,6 +260,7 @@ export default {
   }
 
   .speaker {
+    flex-direction: row;
     background: #d87d4a;
     border-radius: 8px;
     width: 1110px;
@@ -272,6 +273,12 @@ export default {
     background-position-x: -90%;
     @media only screen and (max-width: 768px) {
       width: 768px;
+      margin: 0 40px;
+      width: 689px;
+      height: 720px;
+      flex-direction: column;
+      background-position-x: 45%;
+      background-position-y: 100%;
     }
 
     .speaker-left {
@@ -284,6 +291,13 @@ export default {
         left: 120px;
         width: 370px;
         height: 453px;
+        @media only screen and (max-width: 768px) {
+          width: 200px;
+          height: 240px;
+          transform: translate(50%, 50%);
+          top: 0;
+          left: 150px;
+        }
       }
     }
 
@@ -292,6 +306,13 @@ export default {
       justify-content: center;
       padding: 0 95px;
       gap: 24px;
+      @media only screen and (max-width: 768px) {
+        align-items: center;
+        width: 370px;
+        padding: 0;
+        margin: 0 auto;
+        text-align: center;
+      }
 
       .name {
         text-transform: uppercase;
@@ -320,6 +341,13 @@ export default {
     background-position-x: -90%;
     align-items: center;
 
+    @media only screen and (max-width: 768px) {
+      width: 689px;
+      height: 320px;
+      margin: 48px 40px;
+      background-position-x: 40%;
+    }
+
     .speaker-2-content {
       align-items: flex-start;
       margin-left: 95px;
@@ -340,11 +368,25 @@ export default {
     height: 320px;
     margin: 0 auto;
     gap: 30px;
+
+    @media only screen and (max-width: 768px) {
+      width: 689px;
+      height: 320px;
+      margin: 48px 40px;
+    }
     .speaker-3-left {
       border-radius: 8px;
+      @media only screen and (max-width: 768px) {
+        width: 339px;
+        height: 320px;
+      }
 
       .img {
         border-radius: 8px;
+        @media only screen and (max-width: 768px) {
+          width: 339px;
+          height: 320px;
+        }
       }
     }
 
@@ -355,6 +397,13 @@ export default {
       padding-left: 95px;
       justify-content: center;
       gap: 32px;
+      @media only screen and (max-width: 768px) {
+        width: 339px;
+        height: 320px;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 35px;
+      }
 
       .name {
         font-weight: bold;

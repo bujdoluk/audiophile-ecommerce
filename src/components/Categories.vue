@@ -96,8 +96,8 @@ export default {};
   align-items: center;
   @media only screen and (max-width: 768px) {
     width: 768px;
-    margin-left: 0;
-    gap: 5px;
+    gap: 0px;
+    margin-bottom: 0;
   }
 }
 
@@ -114,7 +114,6 @@ export default {};
   cursor: pointer;
   @media only screen and (max-width: 768px) {
     width: 223px;
-    gap: 5px;
     height: 165px;
   }
 

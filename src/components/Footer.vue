@@ -88,7 +88,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Footer",
+  methods: {},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -98,6 +101,10 @@ export default {};
   padding: 75px 165px 48px 165px;
   margin: 0 auto;
   width: 100vw;
+  @media only screen and (max-width: 768px) {
+    padding: 75px 40px 48px 40px;
+    margin: 0;
+  }
 
   .footer-left {
     gap: 36px;

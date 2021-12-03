@@ -3,7 +3,7 @@
     <Navbar />
     <div class="title flex">headphones</div>
     <div class="content flex flex-column">
-      <section class="headphone flex flex-row">
+      <section class="headphone flex">
         <div class="headphone-left">
           <img
             class="img-headphone"
@@ -25,7 +25,7 @@
         </div>
         <div></div>
       </section>
-      <section class="headphone flex flex-row">
+      <section class="headphone flex mark-I">
         <div class="headphone-right-mark-I flex flex-column">
           <div class="name">XX99 mark I heaphones</div>
           <div class="text">
@@ -45,7 +45,7 @@
           />
         </div>
       </section>
-      <section class="headphone flex flex-row">
+      <section class="headphone flex">
         <div class="headphone-left">
           <img
             class="img-headphone"
@@ -107,8 +107,17 @@ export default {
     width: 1110px;
     margin: 0 auto;
 
+    @media only screen and (max-width: 768px) {
+      width: 689px;
+    }
+
     .headphone {
       margin-top: 110px;
+      flex-direction: row;
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+
       .headphone-left {
         flex-basis: 50%;
 
@@ -116,6 +125,11 @@ export default {
           border-radius: 8px;
           width: 555px;
           height: 560px;
+          @media only screen and (max-width: 768px) {
+            width: 689px;
+            height: 352px;
+            object-fit: cover;
+          }
         }
       }
 
@@ -126,6 +140,19 @@ export default {
         padding-left: 125px;
         justify-content: center;
         align-items: flex-start;
+        @media only screen and (max-width: 768px) {
+          width: 572px;
+          height: 302px;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        .new-orange {
+          @media only screen and (max-width: 768px) {
+            margin-top: 52px;
+          }
+        }
       }
 
       .headphone-right-mark-I {
@@ -136,7 +163,19 @@ export default {
         padding-left: 0;
         justify-content: center;
         align-items: flex-start;
+
+        @media only screen and (max-width: 768px) {
+          align-items: center;
+          padding: 0 98px;
+          width: 572px;
+          margin: 0 auto;
+          text-align: center;
+        }
       }
+    }
+
+    .mark-I {
+      flex-direction: column-reverse;
     }
   }
 }

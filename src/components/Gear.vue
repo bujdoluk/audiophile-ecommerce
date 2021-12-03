@@ -1,5 +1,5 @@
 <template>
-  <section class="gear flex flex-row">
+  <section class="gear flex">
     <div class="gear-left flex flex-column">
       <div class="name">bringing you the <span>best</span> audio gear</div>
       <div class="text">
@@ -27,15 +27,25 @@ export default {};
 
 <style lang="scss" scoped>
 .gear {
+  flex-direction: row;
   width: 1110px;
   height: 588px;
   margin: 110px auto;
+  @media only screen and (max-width: 768px) {
+    width: 689px;
+    height: 633px;
+    flex-direction: column-reverse;
+  }
 
   .gear-left {
     flex-basis: 50%;
     gap: 32px;
     justify-content: center;
     margin-right: 125px;
+    @media only screen and (max-width: 768px) {
+      margin-right: 40px;
+      flex-basis: 100%;
+    }
     .name {
       font-style: normal;
       font-weight: bold;
@@ -43,10 +53,17 @@ export default {};
       line-height: 44px;
       letter-spacing: 1.42857px;
       text-transform: uppercase;
+      @media only screen and (max-width: 768px) {
+        text-align: center;
+      }
 
       span {
         color: #d87d4a;
       }
+    }
+
+    .text {
+      text-align: center;
     }
   }
 
@@ -54,6 +71,16 @@ export default {};
     flex-basis: 50%;
     .img {
       border-radius: 8px;
+      width: 548px;
+      height: 588px;
+
+      @media only screen and (max-width: 768px) {
+        clip: rect(0, 689px, 300px, 0);
+        height: 300px;
+        width: 689px;
+        margin: 0 auto;
+        object-fit: cover;
+      }
     }
   }
 }
