@@ -13,20 +13,18 @@
         </div>
         <div class="product-right flex flex-column">
           <div class="new-orange">new product</div>
-          <div class="name">XX99 mark II heaphones</div>
+          <div class="name">{{ currentProduct.title }}</div>
           <div class="text">
-            The new XX99 Mark II headphones is the pinnacle of pristine audio.
-            It redefines your premium heaphone experience by repdocusing the
-            balanced depth and precision of studio-quality sound.
+            {{ currentProduct.text }}
           </div>
-          <div class="price">$ 2,999</div>
+          <div class="price">{{ currentProduct.price }}</div>
           <div class="counter flex flex-row">
             <form class="buttons flex flex-row">
               <div class="value-button flex flex-column" id="decrease">-</div>
               <input class="input" type="number" id="number" value="0" />
               <div class="value-button flex flex-column" id="increase">+</div>
             </form>
-            <button class="btn-orange">add to cart</button>
+            <button class="btn-orange" @click="addNewItem">add to cart</button>
           </div>
         </div>
         <div></div>
@@ -36,21 +34,10 @@
         <div class="features-left flex flex-column">
           <div class="title">Features</div>
           <div class="text">
-            Featuring a genuine leather head strap and premium earcups, these
-            headphones deliver superior comfort for those who like to enjoy
-            endless listening. It includes intuitive controls designed for any
-            situation. Whether you’re taking a business call or just in your own
-            personal space, the auto on/off and pause features ensure that
-            you’ll never miss a beat.
+            {{ currentProduct.features1 }}
           </div>
           <div class="text">
-            The advanced Active Noise Cancellation with built-in equalizer allow
-            you to experience your audio world on your terms. It lets you enjoy
-            your audio in peace, but quickly interact with your surroundings
-            when you need to. Combined with Bluetooth 5. 0 compliant
-            connectivity and 17 hour battery life, the XX99 Mark II headphones
-            gives you superior sound, cutting-edge technology, and a modern
-            design aesthetic.
+            {{ currentProduct.features2 }}
           </div>
         </div>
         <div class="features-right flex flex-column">
@@ -58,24 +45,24 @@
           <div class="description">
             <ul class="flex flex-column">
               <li class="flex">
-                <span>1x</span>
-                <p>Headphone Unit</p>
+                <span>{{ currentProduct.boxqty1 }}x</span>
+                <p>{{ currentProduct.boxname1 }}</p>
               </li>
               <li class="flex">
-                <span>2x</span>
-                <p>Replacement Earcups</p>
+                <span>{{ currentProduct.boxqty2 }}x</span>
+                <p>{{ currentProduct.boxname2 }}</p>
               </li>
               <li class="flex">
-                <span>1x</span>
-                <p>User Manual</p>
+                <span>{{ currentProduct.boxqty1 }}x</span>
+                <p>{{ currentProduct.boxname3 }}</p>
               </li>
               <li class="flex">
-                <span>1x</span>
-                <p>3.5mm 5m Audio Cable</p>
+                <span>{{ currentProduct.boxqty1 }}x</span>
+                <p>{{ currentProduct.boxname4 }}</p>
               </li>
               <li class="flex">
-                <span>1x</span>
-                <p>Travel Bag</p>
+                <span>{{ currentProduct.boxqty1 }}x</span>
+                <p>{{ currentProduct.boxname5 }}</p>
               </li>
             </ul>
           </div>
@@ -120,14 +107,55 @@ import Gear from "../components/Gear.vue";
 import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
 import Youmaylike from "../components/Youmaylike.vue";
-import router from "vue-router";
+import { uid } from "uid";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "ProductDetail",
   components: { Navbar, Gear, Footer, Categories, Youmaylike },
+  data() {
+    return {
+      cartList: [],
+      cartTotal: 0,
+      currentProduct: null,
+    };
+  },
+  created() {
+    this.getCurrentProduct();
+  },
   methods: {
+    ...mapMutations(["SET_CURRENT_PRODUCT"]),
+
     back() {
       history.back();
     },
+
+    addNewItem() {
+      this.cartList.push({
+        id: uid(),
+        picture: "",
+        itemName: "",
+        price: 0,
+        qty: 0,
+        total: 0,
+      });
+
+      calTotal();
+    },
+
+    calTotal() {
+      this.total = 0;
+      this.cartList.forEach((item) => {
+        this.cartTotal += item.total;
+      });
+    },
+
+    getCurrentProduct() {
+      this.SET_CURRENT_PRODUCT(this.$route.params.productId);
+      this.currentProduct = this.currentProductArray[0];
+    },
+  },
+  computed: {
+    ...mapState(["currentProductArray"]),
   },
 };
 </script>

@@ -172,9 +172,16 @@
 import Navbar from "../components/Navbar.vue";
 import { mapMutations } from "vuex";
 import Footer from "../components/Footer.vue";
+import { uid } from "uid";
 export default {
   name: "Checkout",
   components: { Navbar, Footer },
+  data() {
+    return {
+      checkoutList: [],
+      checkoutTotal: 0,
+    };
+  },
   methods: {
     ...mapMutations(["TOGGLE_THANKYOU_MODAL"]),
 
@@ -185,6 +192,8 @@ export default {
     back() {
       history.back();
     },
+
+   
   },
 };
 </script>

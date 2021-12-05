@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Headphones from '../views/Headphones.vue'
-import Earphones from '../views/Earphones.vue'
-import Speakers from '../views/Speakers.vue'
-import ProductDetail from '../views/ProductDetail.vue'
-import Checkout from '../views/Checkout.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import Headphones from '../views/Headphones.vue';
+import Earphones from '../views/Earphones.vue';
+import Speakers from '../views/Speakers.vue';
+import ProductDetail from '../views/ProductDetail.vue';
+import Checkout from '../views/Checkout.vue';
 
 const routes = [
   {
@@ -40,7 +40,7 @@ const routes = [
     }
   },
   {
-    path: '/productdetail',
+    path: '/productdetail/:productId',
     name: 'ProductDetail',
     component: ProductDetail,
     meta: {

@@ -4,69 +4,30 @@
       <div class="cart flex flex-column">
         <div class="cart-detail flex flex-row">
           <div class="cart-name">Cart (3)</div>
-          <div class="grey">Remove all</div>
+          <div class="grey" @click="removeAllItems">Remove all</div>
         </div>
 
-        <section class="content-details flex flex-row">
-          <div>
-            <img
-              class="img"
-              src="../assets/shared/desktop/image-xx59-headphones.jpg"
-              alt="img"
-            />
-          </div>
-          <div class="info flex flex-row">
-            <div class="title-price flex flex-column">
-              <div>
-                <h6>XX99 MK II</h6>
-              </div>
-              <div class="price-small">$ 2,999</div>
+        <div v-for="(item, index) in cartItemList" :key="index">
+          <section class="content-details flex flex-row">
+            <div>
+              <!-- ../assets/shared/desktop/image-xx59-headphones.jpg -->
+              <img class="img" src="" alt="img" />
             </div>
-            <div class="count">x1</div>
-          </div>
-        </section>
-
-        <section class="content-details flex flex-row">
-          <div>
-            <img
-              class="img"
-              src="../assets/shared/desktop/image-xx59-headphones.jpg"
-              alt="img"
-            />
-          </div>
-          <div class="info flex flex-row">
-            <div class="title-price flex flex-column">
-              <div>
-                <h6>XX99 MK II</h6>
+            <div class="info flex flex-row">
+              <div class="title-price flex flex-column">
+                <div>
+                  <h6>{{ item.itemName }}</h6>
+                </div>
+                <div class="price-small">{{ item.price }}</div>
               </div>
-              <div class="price-small">$ 2,999</div>
+              <div class="count">{{ item.qty }}</div>
             </div>
-            <div class="count">x1</div>
-          </div>
-        </section>
+          </section>
 
-        <section class="content-details flex flex-row">
-          <div>
-            <img
-              class="img"
-              src="../assets/shared/desktop/image-xx59-headphones.jpg"
-              alt="img"
-            />
+          <div class="detail flex flex-row">
+            <div class="grey">Total</div>
+            <div class="price">{{ item.total }}</div>
           </div>
-          <div class="info flex flex-row">
-            <div class="title-price flex flex-column">
-              <div>
-                <h6>XX99 MK II</h6>
-              </div>
-              <div class="price-small">$ 2,999</div>
-            </div>
-            <div class="count">x1</div>
-          </div>
-        </section>
-
-        <div class="detail flex flex-row">
-          <div class="grey">Total</div>
-          <div class="price">$ 5,656</div>
         </div>
 
         <router-link @click="closeCart" class="link" :to="{ name: 'Checkout' }">
@@ -80,9 +41,16 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import { mapMutations } from "vuex";
+import { uid } from "uid";
 export default {
   name: "CartModal",
   components: { Navbar },
+  data() {
+    return {
+      cartList: [],
+      total: 0,
+    };
+  },
   methods: {
     ...mapMutations(["TOGGLE_CART_MODAL"]),
 
@@ -94,6 +62,11 @@ export default {
 
     closeCart() {
       this.TOGGLE_CART_MODAL();
+    },
+
+    removeAllItems(id) {
+      this.cartList = [];
+      total = 0;
     },
   },
 };

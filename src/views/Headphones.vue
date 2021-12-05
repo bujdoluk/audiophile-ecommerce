@@ -19,8 +19,16 @@
             It redefines your premium heaphone experience by repdocusing the
             balanced depth and precision of studio-quality sound.
           </div>
+
           <div>
-            <button class="btn-orange">SEE product</button>
+            <router-link
+              :to="{
+                name: 'ProductDetail',
+                params: { productId: product.productId },
+              }"
+            >
+              <button class="btn-orange">SEE product</button>
+            </router-link>
           </div>
         </div>
         <div></div>
@@ -34,7 +42,14 @@
             engineers, and musix adicionados alike in studios and on the go.
           </div>
           <div>
-            <button class="btn-orange">SEE product</button>
+            <router-link
+              :to="{
+                name: 'ProductDetail',
+                params: { productId: product.productId },
+              }"
+            >
+              <button class="btn-orange">SEE product</button>
+            </router-link>
           </div>
         </div>
         <div class="headphone-left">
@@ -61,7 +76,14 @@
             wireless headset is brilliant companion at home or on the move.
           </div>
           <div>
-            <button class="btn-orange">SEE product</button>
+            <router-link
+              :to="{
+                name: 'ProductDetail',
+                params: { productId: product.productId },
+              }"
+            >
+              <button class="btn-orange">SEE product</button>
+            </router-link>
           </div>
         </div>
       </section>
@@ -79,6 +101,7 @@ import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
 export default {
   name: "Headphones",
+  props: ["Headphones"],
   components: { Navbar, Gear, Footer, Categories },
 };
 </script>
