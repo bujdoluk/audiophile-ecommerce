@@ -3,7 +3,7 @@
     <Navbar />
     <div class="title flex">earphones</div>
     <div class="content flex flex-column">
-      <section class="earphone flex flex-row">
+      <section class="earphone flex">
         <div class="earphone-left">
           <img
             class="img-earphone"
@@ -62,6 +62,9 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 60px;
+    @media only screen and (max-width: 768px) {
+      width: 768px;
+    }
   }
 
   .content {
@@ -70,13 +73,27 @@ export default {
 
     .earphone {
       margin-top: 110px;
+      flex-direction: row;
+      width: 689px;
+      margin: 0 39px;
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+
       .earphone-left {
         flex-basis: 50%;
-
+        @media only screen and (max-width: 768px) {
+          margin: 120px 0 60px 0;
+        }
         .img-earphone {
           border-radius: 8px;
           width: 555px;
           height: 560px;
+          @media only screen and (max-width: 768px) {
+            width: 689px;
+            height: 352px;
+            object-fit: contain;
+          }
         }
       }
 
@@ -87,6 +104,22 @@ export default {
         padding-left: 125px;
         justify-content: center;
         align-items: flex-start;
+        @media only screen and (max-width: 768px) {
+          align-items: center;
+          margin-bottom: 60px;
+        }
+
+        .name {
+          @media only screen and (max-width: 768px) {
+            text-align: center;
+          }
+        }
+
+        .text {
+          @media only screen and (max-width: 768px) {
+            text-align: center;
+          }
+        }
       }
 
       .earphone-right-mark-I {

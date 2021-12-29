@@ -3,50 +3,8 @@
     <Navbar />
     <div class="title flex">speakers</div>
     <div class="content flex flex-column">
-      <section class="speaker flex flex-row">
-        <div class="speaker-left">
-          <img
-            class="img-speaker"
-            src="../assets/product-zx9-speaker/desktop/image-category-page-preview.jpg"
-            alt="headphone"
-          />
-        </div>
-        <div class="speaker-right flex flex-column">
-          <div class="new-orange">new product</div>
-          <div class="name">ZX9 speaker</div>
-          <div class="text">
-            Upgrade your sound system with the all new ZX9 active speaker. It’s
-            a bookshelf speaker system that offers truly wireless connectivity -
-            creating new possibilities for more pleasing and practical audio
-            setups.
-          </div>
-          <div>
-            <button class="btn-orange">SEE product</button>
-          </div>
-        </div>
-        <div></div>
-      </section>
-      <section class="speaker flex flex-row">
-        <div class="speaker-right-mark-I flex flex-column">
-          <div class="name">ZX7 speaker</div>
-          <div class="text">
-            Stream high quality sound wirelessly with minimal loss. The ZX7
-            bookshelf speaker uses high-end audiophile components that
-            represents the top of the line powered speakers for home or studio
-            use.
-          </div>
-          <div>
-            <button class="btn-orange">SEE product</button>
-          </div>
-        </div>
-        <div class="speaker-left">
-          <img
-            class="img-speaker"
-            src="../assets/product-zx7-speaker/desktop/image-category-page-preview.jpg"
-            alt="speaker"
-          />
-        </div>
-      </section>
+      <CategoryOverviewRight v-for="(x7, index) in zx7" :x7="x7" :key="index" />
+      <CategoryOverviewLeft v-for="(x9, index) in zx9" :x9="x9" :key="index" />
       <Categories />
       <Gear />
     </div>
@@ -59,9 +17,47 @@ import Navbar from "../components/Navbar.vue";
 import Gear from "../components/Gear.vue";
 import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
+import CategoryOverviewLeft from "../components/CategoryOverviewLeft.vue";
+import CategoryOverviewRight from "../components/CategoryOverviewRight.vue";
+import { projectFirestore } from "../firebase/config";
+
 export default {
   name: "Speakers",
-  components: { Navbar, Gear, Footer, Categories },
+  components: {
+    Navbar,
+    Gear,
+    Footer,
+    Categories,
+    CategoryOverviewLeft,
+    CategoryOverviewRight,
+  },
+  data() {
+    return {
+      zx7: [],
+      zx9: [],
+    };
+  },
+  created() {
+    projectFirestore
+      .collection("zx7")
+      .limit(1)
+      .get()
+      .then((snap) => {
+        snap.forEach((doc) => {
+          this.zx7.push(doc.data());
+        });
+      });
+
+    projectFirestore
+      .collection("zx9")
+      .limit(1)
+      .get()
+      .then((snap) => {
+        snap.forEach((doc) => {
+          this.zx9.push(doc.data());
+        });
+      });
+  },
 };
 </script>
 
@@ -83,11 +79,17 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 60px;
+    @media only screen and (max-width: 768px) {
+      width: 768px;
+    }
   }
 
   .content {
     width: 1110px;
     margin: 0 auto;
+    @media only screen and (max-width: 768px) {
+      margin: 0;
+    }
 
     .speaker {
       margin-top: 110px;

@@ -95,9 +95,9 @@ export default {};
   justify-content: center;
   align-items: center;
   @media only screen and (max-width: 768px) {
-    width: 768px;
-    gap: 0px;
-    margin-bottom: 0;
+    width: 689px;
+    gap: 10px;
+    margin: 0 39px;
   }
 }
 

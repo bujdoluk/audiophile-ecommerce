@@ -55,9 +55,7 @@
             made for the passionate music enthusiast.
           </div>
           <div>
-            <router-link class="link" :to="{ name: 'ProductDetail' }">
-              <button class="btn-orange">See Product</button>
-            </router-link>
+            <button class="btn-orange">See Product</button>
           </div>
         </div>
         <div class="right">

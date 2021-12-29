@@ -81,6 +81,7 @@ export default {
     background-color: #000000;
     @media only screen and (max-width: 768px) {
       padding: 35px 40px;
+      width: 768px;
     }
 
     .logo {

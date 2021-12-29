@@ -35,6 +35,7 @@ export default {};
     width: 689px;
     height: 633px;
     flex-direction: column-reverse;
+    margin: 96px 39px;
   }
 
   .gear-left {

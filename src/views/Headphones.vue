@@ -21,14 +21,7 @@
           </div>
 
           <div>
-            <router-link
-              :to="{
-                name: 'ProductDetail',
-                params: { productId: product.productId },
-              }"
-            >
-              <button class="btn-orange">SEE product</button>
-            </router-link>
+            <button class="btn-orange">SEE product</button>
           </div>
         </div>
         <div></div>
@@ -42,14 +35,7 @@
             engineers, and musix adicionados alike in studios and on the go.
           </div>
           <div>
-            <router-link
-              :to="{
-                name: 'ProductDetail',
-                params: { productId: product.productId },
-              }"
-            >
-              <button class="btn-orange">SEE product</button>
-            </router-link>
+            <button class="btn-orange">SEE product</button>
           </div>
         </div>
         <div class="headphone-left">
@@ -76,14 +62,7 @@
             wireless headset is brilliant companion at home or on the move.
           </div>
           <div>
-            <router-link
-              :to="{
-                name: 'ProductDetail',
-                params: { productId: product.productId },
-              }"
-            >
-              <button class="btn-orange">SEE product</button>
-            </router-link>
+            <button class="btn-orange">SEE product</button>
           </div>
         </div>
       </section>
@@ -132,6 +111,7 @@ export default {
 
     @media only screen and (max-width: 768px) {
       width: 689px;
+      margin: 0;
     }
 
     .headphone {
@@ -139,6 +119,8 @@ export default {
       flex-direction: row;
       @media only screen and (max-width: 768px) {
         flex-direction: column;
+        width: 689px;
+        margin: 120px 39px;
       }
 
       .headphone-left {

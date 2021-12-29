@@ -148,11 +148,6 @@ export default {
         this.cartTotal += item.total;
       });
     },
-
-    getCurrentProduct() {
-      this.SET_CURRENT_PRODUCT(this.$route.params.productId);
-      this.currentProduct = this.currentProductArray[0];
-    },
   },
   computed: {
     ...mapState(["currentProductArray"]),
