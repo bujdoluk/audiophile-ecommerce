@@ -37,6 +37,12 @@ export default {};
     flex-direction: column-reverse;
     margin: 96px 39px;
   }
+  @media only screen and (max-width: 376px) {
+    width: 327px;
+    height: 633px;
+    flex-direction: column-reverse;
+    margin: 200px 24px 80px 24px;
+  }
 
   .gear-left {
     flex-basis: 50%;
@@ -45,6 +51,10 @@ export default {};
     margin-right: 125px;
     @media only screen and (max-width: 768px) {
       margin-right: 40px;
+      flex-basis: 100%;
+    }
+    @media only screen and (max-width: 376px) {
+      margin-right: 0;
       flex-basis: 100%;
     }
     .name {
@@ -56,6 +66,10 @@ export default {};
       text-transform: uppercase;
       @media only screen and (max-width: 768px) {
         text-align: center;
+      }
+      @media only screen and (max-width: 376px) {
+        padding: 20px 0;
+        font-size: 32px;
       }
 
       span {
@@ -81,6 +95,9 @@ export default {};
         width: 689px;
         margin: 0 auto;
         object-fit: cover;
+      }
+      @media only screen and (max-width: 376px) {
+        width: 327px;
       }
     }
   }

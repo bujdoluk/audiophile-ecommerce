@@ -92,7 +92,7 @@
         </div>
       </div>
     </section>
-    <section class="speaker-3 flex flex row">
+    <section class="speaker-3 flex">
       <div class="speaker-3-left">
         <img
           class="img"
@@ -198,6 +198,10 @@ export default {
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 180px;
+    @media only screen and (max-width: 376px) {
+      height: 600px;
+      margin-bottom: 120px;
+    }
 
     &-details {
       z-index: 2;
@@ -205,6 +209,9 @@ export default {
         position: relative;
         width: 379px;
         margin-left: 194px;
+      }
+      @media only screen and (max-width: 376px) {
+        margin: 0;
       }
 
       .left {
@@ -217,6 +224,11 @@ export default {
           text-align: center;
           margin-top: 216px;
         }
+        @media only screen and (max-width: 376px) {
+          flex-basis: 100%;
+          width: 375px;
+        }
+
         .new {
           text-transform: uppercase;
           opacity: 0.5;
@@ -229,12 +241,18 @@ export default {
           text-transform: uppercase;
           font-weight: bold;
           font-size: 56px;
+          @media only screen and (max-width: 376px) {
+            font-size: 36px;
+          }
         }
         .text {
           font-style: normal;
           font-weight: 500;
           font-size: 15px;
           opacity: 0.5;
+          @media only screen and (max-width: 376px) {
+            margin: 0 30px;
+          }
         }
 
         .link {
@@ -253,6 +271,10 @@ export default {
         left: -100px;
         z-index: 2;
         transform: scale(130%);
+      }
+      @media only screen and (max-width: 376px) {
+        flex-basis: 0%;
+        transform: scale(90%);
       }
     }
   }
@@ -278,6 +300,10 @@ export default {
       background-position-x: 45%;
       background-position-y: 100%;
     }
+    @media only screen and (max-width: 376px) {
+      margin: 0 24px;
+      width: 327px;
+    }
 
     .speaker-left {
       flex-basis: 50%;
@@ -296,6 +322,13 @@ export default {
           top: 0;
           left: 150px;
         }
+        @media only screen and (max-width: 376px) {
+          width: 200px;
+          height: 240px;
+          transform: translate(50%, 50%);
+          top: 0;
+          left: -35px;
+        }
       }
     }
 
@@ -311,6 +344,9 @@ export default {
         margin: 0 auto;
         text-align: center;
       }
+      @media only screen and (max-width: 376px) {
+        width: 327px;
+      }
 
       .name {
         text-transform: uppercase;
@@ -323,6 +359,9 @@ export default {
         font-weight: 500;
         font-size: 15px;
         opacity: 0.5;
+        @media only screen and (max-width: 376px) {
+          margin: 0 24px;
+        }
       }
     }
   }
@@ -345,11 +384,22 @@ export default {
       margin: 48px 40px;
       background-position-x: 40%;
     }
+    @media only screen and (max-width: 376px) {
+      width: 327px;
+      height: 320px;
+      margin: 48px 24px;
+      background-position-x: 55%;
+      background-position-y: 30%;
+      background-size: 1200px;
+    }
 
     .speaker-2-content {
       align-items: flex-start;
       margin-left: 95px;
       gap: 32px;
+      @media only screen and (max-width: 376px) {
+        margin-left: 45px;
+      }
 
       .name {
         font-weight: bold;
@@ -366,11 +416,17 @@ export default {
     height: 320px;
     margin: 0 auto;
     gap: 30px;
+    flex-direction: row;
 
     @media only screen and (max-width: 768px) {
       width: 689px;
       height: 320px;
       margin: 48px 40px;
+    }
+    @media only screen and (max-width: 376px) {
+      width: 327px;
+      flex-direction: column;
+      margin: 48px 24px;
     }
     .speaker-3-left {
       border-radius: 8px;
@@ -384,6 +440,10 @@ export default {
         @media only screen and (max-width: 768px) {
           width: 339px;
           height: 320px;
+        }
+        @media only screen and (max-width: 376px) {
+          width: 327px;
+          height: 200px;
         }
       }
     }
@@ -401,6 +461,10 @@ export default {
         justify-content: center;
         align-items: flex-start;
         padding-left: 35px;
+      }
+      @media only screen and (max-width: 376px) {
+        width: 327px;
+        min-height: 200px;
       }
 
       .name {

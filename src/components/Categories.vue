@@ -1,5 +1,5 @@
 <template>
-  <div class="categories flex flex-row">
+  <div class="categories flex">
     <div class="item flex flex-column">
       <div>
         <img
@@ -94,10 +94,18 @@ export default {};
   gap: 30px;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
   @media only screen and (max-width: 768px) {
     width: 689px;
     gap: 10px;
     margin: 0 39px;
+  }
+  @media only screen and (max-width: 376px) {
+    flex-direction: column;
+    width: 375px;
+    height: 100%;
+    margin: 40px 0;
+    gap: 60px;
   }
 }
 
@@ -116,6 +124,10 @@ export default {};
     width: 223px;
     height: 165px;
   }
+  @media only screen and (max-width: 376px) {
+    width: 327px;
+    height: 165px;
+  }
 
   .img {
     width: 180px;
@@ -127,6 +139,11 @@ export default {};
       width: 100px;
       height: 106px;
       right: 65px;
+    }
+    @media only screen and (max-width: 376px) {
+      width: 100px;
+      height: 106px;
+      right: 105px;
     }
   }
 }

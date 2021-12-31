@@ -2,7 +2,7 @@
   <div class="checkout">
     <Navbar />
     <div class="back" @click="back()">Go back</div>
-    <div class="content flex flex-row">
+    <div class="content flex">
       <form class="form">
         <div class="billing">
           <h3>Checkout</h3>
@@ -192,8 +192,6 @@ export default {
     back() {
       history.back();
     },
-
-   
   },
 };
 </script>
@@ -206,6 +204,10 @@ export default {
     margin-top: 128px;
     margin-bottom: 38px;
     cursor: pointer;
+    @media only screen and (max-width: 768px) {
+      width: 689px;
+      margin: 128px 39px 38px 39px;
+    }
   }
 
   .back:hover {
@@ -218,6 +220,13 @@ export default {
     margin: 0 auto;
     gap: 30px;
     margin-bottom: 110px;
+    flex-direction: row;
+    @media only screen and (max-width: 768px) {
+      width: 650px;
+      margin: 50px 39px;
+      flex-direction: column;
+      gap: 30px;
+    }
 
     .form {
       width: 730px;
@@ -225,6 +234,10 @@ export default {
       background-color: #ffffff;
       border-radius: 8px;
       padding: 54px 48px;
+      @media only screen and (max-width: 768px) {
+        width: 689px;
+        padding: 30px 27.5px;
+      }
 
       .billing {
         .billing-details {
@@ -324,9 +337,16 @@ export default {
       height: 612px;
       background-color: #ffffff;
       border-radius: 8px;
+      @media only screen and (max-width: 768px) {
+        width: 689px;
+      }
 
       .content {
         padding: 32px 33px;
+        @media only screen and (max-width: 768px) {
+          padding: 0 33px 32px 33px;
+          width: 623px;
+        }
 
         .bottom {
           margin-bottom: 31px;
@@ -334,6 +354,9 @@ export default {
 
         &-details {
           margin-bottom: 24px;
+          @media only screen and (max-width: 768px) {
+            width: 623px;
+          }
 
           .img {
             width: 64px;
@@ -343,16 +366,25 @@ export default {
 
           .info {
             align-items: center;
+            @media only screen and (max-width: 768px) {
+              width: 559px;
+            }
 
             .title-price {
               justify-content: flex-start;
               margin-left: 16px;
+              @media only screen and (max-width: 768px) {
+                width: 100px;
+              }
             }
 
             .count {
               font-weight: bold;
               opacity: 0.5;
               margin-left: 114px;
+              @media only screen and (max-width: 768px) {
+                margin-left: 355px;
+              }
             }
           }
         }
@@ -362,6 +394,10 @@ export default {
           width: 284px;
           height: 25px;
           margin-bottom: 8px;
+          @media only screen and (max-width: 768px) {
+            width: 550px;
+          }
+
           .grey {
             font-style: normal;
             font-weight: bold;
@@ -387,6 +423,9 @@ export default {
 
         .btn {
           width: 284px;
+          @media only screen and (max-width: 768px) {
+            width: 550px;
+          }
         }
       }
     }

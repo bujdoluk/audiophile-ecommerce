@@ -1,6 +1,11 @@
 <template>
   <div class="nav">
     <div class="navbar flex flex-row">
+      <div class="burger flex">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
       <div class="logo">
         <svg width="143" height="25" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -82,6 +87,16 @@ export default {
     @media only screen and (max-width: 768px) {
       padding: 35px 40px;
       width: 768px;
+    }
+
+    .burger {
+      width: 30px;
+      height: 30px;
+
+      line {
+        border-bottom: 3px solid white;
+        background-color: white;
+      }
     }
 
     .logo {
