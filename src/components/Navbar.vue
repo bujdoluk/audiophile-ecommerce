@@ -15,7 +15,7 @@
           />
         </svg>
       </div>
-      <div class="category flex flex-row">
+      <div class="category flex flex-row" v-if="mobileView">
         <div>
           <router-link class="link" :to="{ name: 'Home' }"> Home </router-link>
         </div>
@@ -52,8 +52,22 @@
 import { mapMutations } from "vuex";
 export default {
   name: "Navbar",
+  data() {
+    return {
+      mobileView: false,
+    };
+  },
+
+  created() {
+    this.checkView();
+    window.addEventListener("resize", this.checkView);
+  },
   methods: {
     ...mapMutations(["TOGGLE_CART_MODAL"]),
+
+    checkView() {
+      this.mobileView = window.innerWidth <= 376;
+    },
 
     newCart() {
       this.TOGGLE_CART_MODAL();

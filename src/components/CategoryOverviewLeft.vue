@@ -58,6 +58,10 @@ export default {
         gap: 30px;
         margin: 0 39px;
       }
+      @media only screen and (max-width: 376px) {
+        margin: 0 24px;
+        width: 375px;
+      }
       .speaker-left {
         flex-basis: 50%;
         @media only screen and (max-width: 768px) {
@@ -70,6 +74,10 @@ export default {
           height: 560px;
           @media only screen and (max-width: 768px) {
             width: 689px;
+          }
+          @media only screen and (max-width: 376px) {
+            width: 327px;
+            height: 340px;
           }
         }
       }
@@ -89,6 +97,9 @@ export default {
           padding-right: 0;
           width: 689px;
           margin-bottom: 60px;
+        }
+        @media only screen and (max-width: 376px) {
+          width: 327px;
         }
       }
     }

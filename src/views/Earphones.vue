@@ -49,6 +49,10 @@ export default {
   background: #0e0e0e;
   height: 336px;
   margin: 0 auto;
+  @media only screen and (max-width: 376px) {
+    width: 375px;
+    height: 192px;
+  }
 
   .title {
     height: 240px;
@@ -65,6 +69,12 @@ export default {
     @media only screen and (max-width: 768px) {
       width: 768px;
     }
+    @media only screen and (max-width: 376px) {
+      width: 375px;
+      height: 102px;
+      margin-top: 96px;
+      font-size: 30px;
+    }
   }
 
   .content {
@@ -79,11 +89,17 @@ export default {
       @media only screen and (max-width: 768px) {
         flex-direction: column;
       }
+      @media only screen and (max-width: 376px) {
+        margin: 0 24px;
+      }
 
       .earphone-left {
         flex-basis: 50%;
         @media only screen and (max-width: 768px) {
           margin: 120px 0 60px 0;
+        }
+        @media only screen and (max-width: 376px) {
+          margin: 60px 0 60px 0;
         }
         .img-earphone {
           border-radius: 8px;
@@ -93,6 +109,9 @@ export default {
             width: 689px;
             height: 352px;
             object-fit: contain;
+          }
+          @media only screen and (max-width: 376px) {
+            width: 327px;
           }
         }
       }
@@ -108,10 +127,17 @@ export default {
           align-items: center;
           margin-bottom: 60px;
         }
+        @media only screen and (max-width: 376px) {
+          padding: 0;
+          width: 327px;
+        }
 
         .name {
           @media only screen and (max-width: 768px) {
             text-align: center;
+          }
+          @media only screen and (max-width: 376px) {
+            font-size: 36px;
           }
         }
 

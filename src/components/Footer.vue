@@ -224,6 +224,12 @@ export default {
       justify-content: flex-end;
       gap: 16px;
 
+      .icon {
+        @media only screen and (max-width: 376px) {
+          margin-left: 20px;
+        }
+      }
+
       .icon:hover {
         filter: invert(0.5) sepia(1);
         cursor: pointer;

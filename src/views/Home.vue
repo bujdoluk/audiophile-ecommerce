@@ -1,7 +1,7 @@
 9<template>
   <div class="home">
-    <!-- <Navbar /> -->
-    <div class="nav">
+    <Navbar />
+    <!-- <div class="nav">
       <div class="navbar flex flex-row">
         <div class="logo">
           <svg width="143" height="25" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@
           </svg>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="content">
       <div class="content-details flex flex-row">
         <div class="left flex flex-column">

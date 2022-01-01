@@ -66,6 +66,9 @@ export default {
   background: #0e0e0e;
   height: 336px;
   margin: 0 auto;
+  @media only screen and (max-width: 376px) {
+    height: 192px;
+  }
 
   .title {
     height: 240px;
@@ -81,6 +84,12 @@ export default {
     margin-top: 60px;
     @media only screen and (max-width: 768px) {
       width: 768px;
+    }
+    @media only screen and (max-width: 376px) {
+      width: 375px;
+      height: 102px;
+      margin-top: 96px;
+      font-size: 30px;
     }
   }
 

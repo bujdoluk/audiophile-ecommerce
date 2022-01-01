@@ -90,6 +90,10 @@ export default {
   background: #0e0e0e;
   height: 336px;
   margin: 0 auto;
+  @media only screen and (max-width: 376px) {
+    width: 375px;
+    height: 192px;
+  }
 
   .title {
     height: 240px;
@@ -103,6 +107,12 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 60px;
+    @media only screen and (max-width: 376px) {
+      width: 375px;
+      height: 102px;
+      margin-top: 96px;
+      font-size: 30px;
+    }
   }
 
   .content {
@@ -113,6 +123,10 @@ export default {
       width: 689px;
       margin: 0;
     }
+    @media only screen and (max-width: 376px) {
+      width: 375px;
+      margin: 0;
+    }
 
     .headphone {
       margin-top: 110px;
@@ -121,6 +135,10 @@ export default {
         flex-direction: column;
         width: 689px;
         margin: 120px 39px;
+      }
+      @media only screen and (max-width: 376px) {
+        width: 375px;
+        margin: 64px 24px;
       }
 
       .headphone-left {
@@ -134,6 +152,10 @@ export default {
             width: 689px;
             height: 352px;
             object-fit: cover;
+          }
+          @media only screen and (max-width: 376px) {
+            width: 327px;
+            margin: 0;
           }
         }
       }
@@ -152,10 +174,22 @@ export default {
           align-items: center;
           text-align: center;
         }
+        @media only screen and (max-width: 376px) {
+          width: 327px;
+          height: 340px;
+          margin: 0;
+          padding-left: 0;
+        }
 
         .new-orange {
           @media only screen and (max-width: 768px) {
             margin-top: 52px;
+          }
+        }
+        .name {
+          @media only screen and (max-width: 376px) {
+            font-size: 28px;
+            margin-top: 20px;
           }
         }
       }
@@ -175,6 +209,25 @@ export default {
           width: 572px;
           margin: 0 auto;
           text-align: center;
+        }
+        @media only screen and (max-width: 376px) {
+          max-width: 327px;
+          height: 340px;
+          margin: 0;
+        }
+
+        .name {
+          @media only screen and (max-width: 376px) {
+            font-size: 28px;
+            width: 327px;
+            margin-top: 20px;
+          }
+        }
+
+        .text {
+          @media only screen and (max-width: 376px) {
+            width: 327px;
+          }
         }
       }
     }
