@@ -6,7 +6,9 @@
         {{ x9.text }}
       </div>
       <div>
-        <button class="btn-orange">SEE product</button>
+        <router-link :to="{ name: 'ProductDetail', params: { id: x9.id } }">
+          <button class="btn-orange">SEE product</button>
+        </router-link>
       </div>
     </div>
     <div class="speaker-left">

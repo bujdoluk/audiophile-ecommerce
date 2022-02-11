@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 import Navbar from "./components/Navbar.vue";
 import CartModal from "./views/CartModal.vue";
 import ThankyouModal from "./views/ThankyouModal.vue";
@@ -23,14 +23,8 @@ export default {
     CartModal,
     ThankyouModal,
   },
-  created() {
-    this.GET_HEADPHONES();
-    this.GET_SPEAKERS();
-    this.GET_EARPHONES();
-  },
-  methods: {
-    ...mapActions(["GET_HEADPHONES", "GET_EARPHONES", "GET_SPEAKERS"]),
-  },
+
+  methods: {},
   computed: {
     ...mapState(["cartModal", "thankyouModal"]),
   },
@@ -292,8 +286,8 @@ h5 {
 h6 {
   font-style: normal;
   font-weight: bold;
-  font-size: 15px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 20px;
   color: #000000;
 }
 

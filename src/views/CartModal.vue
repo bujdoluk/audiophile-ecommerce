@@ -1,32 +1,32 @@
 <template>
-  <div @click="checkClick" ref="modalWrap" class="modal-wrap">
+  <div class="modal-wrap">
     <form class="modal-content">
+      <!-- <span v-if="!hasProductInCart">No products in cart.</span> -->
       <div class="cart flex flex-column">
         <div class="cart-detail flex flex-row">
           <div class="cart-name">Cart (3)</div>
-          <div class="grey" @click="removeAllItems">Remove all</div>
+          <div class="grey">Remove all</div>
         </div>
 
-        <div v-for="(item, index) in cartItemList" :key="index">
+        <div v-for="(product, index) in getCart" :key="index">
           <section class="content-details flex flex-row">
             <div>
-              <!-- ../assets/shared/desktop/image-xx59-headphones.jpg -->
-              <img class="img" src="" alt="img" />
+              <img class="img" :src="product.image" alt="img" />
             </div>
             <div class="info flex flex-row">
               <div class="title-price flex flex-column">
                 <div>
-                  <h6>{{ item.itemName }}</h6>
+                  <h6>{{ product.title }}</h6>
                 </div>
-                <div class="price-small">{{ item.price }}</div>
+                <div class="price-small">{{ product.price }} $</div>
               </div>
-              <div class="count">{{ item.qty }}</div>
+              <div class="count"></div>
             </div>
           </section>
 
           <div class="detail flex flex-row">
             <div class="grey">Total</div>
-            <div class="price">{{ item.total }}</div>
+            <div class="price">{{ totalPrice() }} $</div>
           </div>
         </div>
 
@@ -40,34 +40,27 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import { mapMutations } from "vuex";
-import { uid } from "uid";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "CartModal",
   components: { Navbar },
-  data() {
-    return {
-      cartList: [],
-      total: 0,
-    };
-  },
   methods: {
-    ...mapMutations(["TOGGLE_CART_MODAL"]),
+    ...mapActions(["toggleCartModal"]),
 
-    checkClick(e) {
-      if (e.target === this.$refs.modalWrap) {
-        this.TOGGLE_CART_MODAL();
-      }
+    hasProductInCart() {
+      return this.getCart.length > 0;
+    },
+
+    totalPrice() {
+      return this.getCart.reduce((current, next) => current + next.price, 0);
     },
 
     closeCart() {
-      this.TOGGLE_CART_MODAL();
+      this.toggleCartModal();
     },
-
-    removeAllItems(id) {
-      this.cartList = [];
-      total = 0;
-    },
+  },
+  computed: {
+    ...mapGetters(["getCart"]),
   },
 };
 </script>

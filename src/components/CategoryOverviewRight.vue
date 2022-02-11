@@ -14,7 +14,9 @@
         {{ x7.text }}
       </div>
       <div>
-        <button class="btn-orange">SEE product</button>
+        <router-link :to="{ name: 'ProductDetail', params: { id: x7.id } }">
+          <button class="btn-orange">SEE product</button>
+        </router-link>
       </div>
     </div>
   </section>

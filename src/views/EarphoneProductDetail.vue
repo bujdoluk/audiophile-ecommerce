@@ -5,11 +5,7 @@
     <div class="content flex flex-column">
       <section class="product flex flex-row">
         <div class="product-left">
-          <img
-            class="img-product"
-            src="../assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg"
-            alt="product"
-          />
+          <img class="img-product" :src="currentProduct.image" alt="product" />
         </div>
         <div class="product-right flex flex-column">
           <div class="new-orange">new product</div>
@@ -17,14 +13,14 @@
           <div class="text">
             {{ currentProduct.text }}
           </div>
-          <div class="price">{{ currentProduct.price }}</div>
+          <div class="price">{{ currentProduct.price }} $</div>
           <div class="counter flex flex-row">
             <form class="buttons flex flex-row">
               <div class="value-button flex flex-column" id="decrease">-</div>
               <input class="input" type="number" id="number" value="0" />
               <div class="value-button flex flex-column" id="increase">+</div>
             </form>
-            <button class="btn-orange" @click="addNewItem">add to cart</button>
+            <button class="btn-orange">add to cart</button>
           </div>
         </div>
         <div></div>
@@ -45,11 +41,11 @@
           <div class="description">
             <ul class="flex flex-column">
               <li class="flex">
-                <span>{{ currentProduct.boxqty1 }}x</span>
+                <span>{{ currentProduct.boxqty2 }}x</span>
                 <p>{{ currentProduct.boxname1 }}</p>
               </li>
               <li class="flex">
-                <span>{{ currentProduct.boxqty2 }}x</span>
+                <span>{{ currentProduct.boxqty6 }}x</span>
                 <p>{{ currentProduct.boxname2 }}</p>
               </li>
               <li class="flex">
@@ -107,50 +103,23 @@ import Gear from "../components/Gear.vue";
 import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
 import Youmaylike from "../components/Youmaylike.vue";
-import { uid } from "uid";
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ProductDetail",
   components: { Navbar, Gear, Footer, Categories, Youmaylike },
-  data() {
-    return {
-      cartList: [],
-      cartTotal: 0,
-      currentProduct: null,
-    };
-  },
-  created() {
-    this.getCurrentProduct();
-  },
   methods: {
-    ...mapMutations(["SET_CURRENT_PRODUCT"]),
+    ...mapActions(["addProduct"]),
+
+    addProductToCart(product) {
+      this.addProduct(product);
+    },
 
     back() {
       history.back();
     },
-
-    addNewItem() {
-      this.cartList.push({
-        id: uid(),
-        picture: "",
-        itemName: "",
-        price: 0,
-        qty: 0,
-        total: 0,
-      });
-
-      calTotal();
-    },
-
-    calTotal() {
-      this.total = 0;
-      this.cartList.forEach((item) => {
-        this.cartTotal += item.total;
-      });
-    },
   },
   computed: {
-    ...mapState(["currentProductArray"]),
+    ...mapGetters({ currentProduct: "getCurrentProduct" }),
   },
 };
 </script>
