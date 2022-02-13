@@ -1,11 +1,6 @@
 <template>
   <div class="nav">
     <div class="navbar flex flex-row">
-      <!-- <div class="burger flex">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-      </div> -->
       <div class="logo">
         <svg width="143" height="25" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -43,13 +38,16 @@
             fill-rule="nonzero"
           />
         </svg>
+        <span class="cart_amount" v-if="hasProductInCart()">
+          {{ getCart.length }}
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Navbar",
   data() {
@@ -72,8 +70,14 @@ export default {
     newCart() {
       this.toggleCartModal();
     },
+
+    hasProductInCart() {
+      return this.getCart.length > 0;
+    },
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["getCart"]),
+  },
 };
 </script>
 
@@ -105,11 +109,11 @@ export default {
     }
 
     .burger {
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
 
       line {
-        border-bottom: 3px solid white;
+        border-bottom: 0.3rem solid white;
         background-color: white;
       }
     }
@@ -119,11 +123,26 @@ export default {
     }
 
     .category {
-      gap: 34px;
+      gap: 3.4rem;
       text-transform: uppercase;
     }
     .cart {
       cursor: pointer;
+      position: relative;
+
+      &_amount {
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 50%;
+        position: absolute;
+        top: -0.7rem;
+        right: -0.8rem;
+        background-color: #fff;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     .link {

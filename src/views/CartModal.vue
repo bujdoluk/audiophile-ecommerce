@@ -4,8 +4,10 @@
       <!-- <span v-if="!hasProductInCart">No products in cart.</span> -->
       <div class="cart flex flex-column">
         <div class="cart-detail flex flex-row">
-          <div class="cart-name">Cart (3)</div>
-          <div class="grey">Remove all</div>
+          <div class="cart-name">Cart ({{ getCart.length }})</div>
+          <div class="grey" @click="removeAllProductsFromCart()">
+            Remove all
+          </div>
         </div>
 
         <div v-for="(product, index) in getCart" :key="index">
@@ -23,16 +25,17 @@
               <div class="count"></div>
             </div>
           </section>
+        </div>
 
-          <div class="detail flex flex-row">
-            <div class="grey">Total</div>
-            <div class="price">{{ totalPrice() }} $</div>
-          </div>
+        <div class="detail flex flex-row">
+          <div class="grey">Total</div>
+          <div class="price">{{ totalPrice() }} $</div>
         </div>
 
         <router-link @click="closeCart" class="link" :to="{ name: 'Checkout' }">
           <button class="btn-orange btn">Checkout</button>
         </router-link>
+        <span class="close-modal" @click="closeCart()">&#x2715;</span>
       </div>
     </form>
   </div>
@@ -53,6 +56,10 @@ export default {
 
     totalPrice() {
       return this.getCart.reduce((current, next) => current + next.price, 0);
+    },
+
+    removeAllProductsFromCart() {
+      return (this.getCart.length = 0);
     },
 
     closeCart() {
@@ -118,6 +125,9 @@ export default {
           opacity: 0.5;
           cursor: pointer;
         }
+        .grey:hover {
+          color: #d87d4a;
+        }
       }
 
       // Content Details //
@@ -176,6 +186,26 @@ export default {
       .btn {
         width: 313px;
         cursor: pointer;
+      }
+
+      .close-modal {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        position: absolute;
+        top: -0.7rem;
+        right: -0.8rem;
+        background-color: #d87d4a;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .close-modal:hover {
+        transform: scale(140%);
+        transition: 0.25s ease-in-out;
       }
     }
   }

@@ -16,9 +16,13 @@
           <div class="price">{{ currentProduct.price }} $</div>
           <div class="counter flex flex-row">
             <form class="buttons flex flex-row">
-              <div class="value-button flex flex-column" id="decrease">-</div>
-              <input class="input" type="number" id="number" value="0" />
-              <div class="value-button flex flex-column" id="increase">+</div>
+              <div class="value-button flex flex-column" v-on:click="decrease">
+                -
+              </div>
+              <div class="input">{{ counter }}</div>
+              <div class="value-button flex flex-column" v-on:click="increase">
+                +
+              </div>
             </form>
             <button
               @click="addProductToCart(currentProduct)"
@@ -108,6 +112,9 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ProductDetail",
   components: { Navbar, Gear, Footer, Categories, Youmaylike },
+  data: {
+    counter: 1,
+  },
   methods: {
     ...mapActions(["addProduct"]),
 
@@ -117,6 +124,14 @@ export default {
 
     back() {
       history.back();
+    },
+
+    increase() {
+      this.counter++;
+    },
+
+    decrease() {
+      this.counter--;
     },
   },
   computed: {
@@ -196,7 +211,9 @@ export default {
               -webkit-box-shadow: none;
               -moz-box-shadow: none;
               box-shadow: none;
-              width: 40px;
+              width: 5rem;
+              height: 3rem;
+              border-radius: 0;
               background-color: #f1f1f1;
               text-align: center;
               font-weight: bold;
@@ -225,6 +242,7 @@ export default {
               justify-content: center;
               align-items: center;
               font-weight: bold;
+              border: 0;
             }
 
             .value-button:hover {

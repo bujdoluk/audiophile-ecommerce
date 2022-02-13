@@ -20,7 +20,12 @@
               <input class="input" type="number" id="number" value="0" />
               <div class="value-button flex flex-column" id="increase">+</div>
             </form>
-            <button class="btn-orange">add to cart</button>
+            <button
+              @click="addProductToCart(currentProduct)"
+              class="btn-orange"
+            >
+              add to cart
+            </button>
           </div>
         </div>
         <div></div>
@@ -195,7 +200,9 @@ export default {
               -webkit-box-shadow: none;
               -moz-box-shadow: none;
               box-shadow: none;
-              width: 40px;
+              width: 5rem;
+              height: 3rem;
+              border-radius: 0;
               background-color: #f1f1f1;
               text-align: center;
               font-weight: bold;
