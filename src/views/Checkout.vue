@@ -81,7 +81,7 @@
         </div>
       </form>
       <div class="pay flex flex-column">
-        <div class="content">
+        <div class="content" v-for="(product, index) in getCart" :key="index">
           <div>
             <h4 class="bottom">Summary</h4>
           </div>
@@ -96,55 +96,17 @@
             <div class="info flex flex-row">
               <div class="title-price flex flex-column">
                 <div>
-                  <h6>XX99 MK II</h6>
+                  <h4>{{ product.name }}</h4>
                 </div>
-                <div class="price-small">$ 2,999</div>
+                <div class="price-small">$ {{ product.price }}</div>
               </div>
-              <div class="count">x1</div>
-            </div>
-          </section>
-
-          <section class="content-details flex flex-row">
-            <div>
-              <img
-                class="img"
-                src="../assets/shared/desktop/image-xx59-headphones.jpg"
-                alt="img"
-              />
-            </div>
-            <div class="info flex flex-row">
-              <div class="title-price flex flex-column">
-                <div>
-                  <h6>XX99 MK II</h6>
-                </div>
-                <div class="price-small">$ 2,999</div>
-              </div>
-              <div class="count">x1</div>
-            </div>
-          </section>
-
-          <section class="content-details flex flex-row">
-            <div>
-              <img
-                class="img"
-                src="../assets/shared/desktop/image-xx59-headphones.jpg"
-                alt="img"
-              />
-            </div>
-            <div class="info flex flex-row">
-              <div class="title-price flex flex-column">
-                <div>
-                  <h6>XX99 MK II</h6>
-                </div>
-                <div class="price-small">$ 2,999</div>
-              </div>
-              <div class="count">x1</div>
+              <div class="count">x{{ product.quantity }}</div>
             </div>
           </section>
 
           <div class="detail flex flex-row">
             <div class="grey">Total</div>
-            <div class="price">$ 5,656</div>
+            <div class="price">$ {{ totalPrice() }}</div>
           </div>
           <div class="detail flex flex-row">
             <div class="grey">Shipping</div>
@@ -152,11 +114,13 @@
           </div>
           <div class="detail flex flex-row bottom">
             <div class="grey">VAT (Included)</div>
-            <div class="price">$ 50</div>
+            <div class="price">$ {{ VATPrice() }}</div>
           </div>
           <div class="detail flex flex-row bottom">
             <div class="grey">Grand total</div>
-            <div class="price"><span>$ 50</span></div>
+            <div class="price">
+              <span>$ {{ grandPrice() }}</span>
+            </div>
           </div>
           <button type="submit" @click="thankyouModal" class="btn-orange btn">
             Continue & pay
@@ -170,20 +134,14 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import { mapMutations } from "vuex";
 import Footer from "../components/Footer.vue";
-import { uid } from "uid";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Checkout",
   components: { Navbar, Footer },
-  data() {
-    return {
-      checkoutList: [],
-      checkoutTotal: 0,
-    };
-  },
   methods: {
-    ...mapMutations(["TOGGLE_THANKYOU_MODAL"]),
+    ...mapActions(["toggleCartModal"]),
 
     thankyouModal() {
       this.TOGGLE_THANKYOU_MODAL();
@@ -192,6 +150,45 @@ export default {
     back() {
       history.back();
     },
+
+    hasProductInCart() {
+      return this.getCart.length > 0;
+    },
+
+    // shipping 50$ included
+    totalPrice() {
+      return this.getCart.reduce((current, next) => current + next.price, 0);
+    },
+
+    // shipping 50$ excluded
+    VATPrice() {
+      if (this.hasProductInCart()) {
+        return (
+          this.getCart.reduce((current, next) => current + next.price, 0) * 0.2
+        ).toFixed(2);
+      } else {
+        this.getCart.reduce((current, next) => current + next.price, 0);
+      }
+    },
+
+    grandPrice() {
+      if (this.hasProductInCart()) {
+        return (
+          this.getCart.reduce((current, next) => current + next.price, 0) *
+            1.2 +
+          50
+        ).toFixed(2);
+      } else {
+        this.getCart.reduce((current, next) => current + next.price, 0);
+      }
+    },
+
+    closeCart() {
+      this.toggleCartModal();
+    },
+  },
+  computed: {
+    ...mapGetters(["getCart"]),
   },
 };
 </script>

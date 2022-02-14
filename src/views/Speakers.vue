@@ -3,8 +3,7 @@
     <Navbar />
     <div class="title flex">speakers</div>
     <div class="content flex flex-column">
-      <CategoryOverviewRight v-for="(x7, index) in zx7" :x7="x7" :key="index" />
-      <CategoryOverviewLeft v-for="(x9, index) in zx9" :x9="x9" :key="index" />
+      <SpeakerList :speakers="getSpeakers" />
       <Categories />
       <Gear />
     </div>
@@ -17,9 +16,8 @@ import Navbar from "../components/Navbar.vue";
 import Gear from "../components/Gear.vue";
 import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
-import CategoryOverviewLeft from "../components/CategoryOverviewLeft.vue";
-import CategoryOverviewRight from "../components/CategoryOverviewRight.vue";
-import { projectFirestore } from "../firebase/config";
+import SpeakerList from "./SpeakerList.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Speakers",
@@ -28,35 +26,10 @@ export default {
     Gear,
     Footer,
     Categories,
-    CategoryOverviewLeft,
-    CategoryOverviewRight,
+    SpeakerList,
   },
-  data() {
-    return {
-      zx7: [],
-      zx9: [],
-    };
-  },
-  created() {
-    projectFirestore
-      .collection("zx7")
-      .limit(1)
-      .get()
-      .then((snap) => {
-        snap.forEach((doc) => {
-          this.zx7.push(doc.data());
-        });
-      });
-
-    projectFirestore
-      .collection("zx9")
-      .limit(1)
-      .get()
-      .then((snap) => {
-        snap.forEach((doc) => {
-          this.zx9.push(doc.data());
-        });
-      });
+  computed: {
+    ...mapGetters(["getSpeakers"]),
   },
 };
 </script>

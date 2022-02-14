@@ -12,18 +12,20 @@
         <h4>headphones</h4>
       </div>
       <div>
-        <button class="btn-shop">
-          shop
-          <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1.322 1l5 5-5 5"
-              stroke="#D87D4A"
-              stroke-width="2"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <router-link class="link" :to="{ name: 'Headphones' }">
+          <button class="btn-shop">
+            shop
+            <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.322 1l5 5-5 5"
+                stroke="#D87D4A"
+                stroke-width="2"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </router-link>
       </div>
     </div>
     <div class="item flex flex-column">
@@ -38,18 +40,20 @@
         <h4>speakers</h4>
       </div>
       <div>
-        <button class="btn-shop">
-          shop
-          <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1.322 1l5 5-5 5"
-              stroke="#D87D4A"
-              stroke-width="2"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <router-link class="link" :to="{ name: 'Speakers' }">
+          <button class="btn-shop">
+            shop
+            <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.322 1l5 5-5 5"
+                stroke="#D87D4A"
+                stroke-width="2"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </router-link>
       </div>
     </div>
     <div class="item flex flex-column">
@@ -64,18 +68,20 @@
         <h4>earphones</h4>
       </div>
       <div>
-        <button class="btn-shop">
-          shop
-          <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1.322 1l5 5-5 5"
-              stroke="#D87D4A"
-              stroke-width="2"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <router-link class="link" :to="{ name: 'Earphones' }">
+          <button class="btn-shop">
+            shop
+            <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.322 1l5 5-5 5"
+                stroke="#D87D4A"
+                stroke-width="2"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </router-link>
       </div>
     </div>
   </div>

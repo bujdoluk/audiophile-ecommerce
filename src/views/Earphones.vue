@@ -63,6 +63,15 @@ export default {
   .content {
     width: 1110px;
     margin: 0 auto;
+
+    @media only screen and (max-width: 768px) {
+      width: 689px;
+      margin: 0;
+    }
+    @media only screen and (max-width: 376px) {
+      width: 375px;
+      margin: 0;
+    }
   }
 }
 </style>

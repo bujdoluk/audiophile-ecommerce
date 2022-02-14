@@ -1,29 +1,43 @@
 <template>
-  <section class="speaker flex">
-    <div class="speaker-right-mark-I flex flex-column">
-      <div class="name">{{ x9.title }}</div>
-      <div class="text">
-        {{ x9.text }}
+  <div>
+    <section
+      class="speaker flex"
+      v-for="(speaker, index) in speakers"
+      :key="index"
+    >
+      <div class="speaker-left">
+        <img class="img-speaker" :src="speaker.image" alt="speaker" />
       </div>
-      <div>
-        <router-link :to="{ name: 'ProductDetail', params: { id: x9.id } }">
-          <button class="btn-orange">SEE product</button>
-        </router-link>
+      <div class="speaker-right flex flex-column">
+        <div class="new-orange">new product</div>
+        <div class="name">{{ speaker.title }}</div>
+        <div class="text">
+          {{ speaker.text }}
+        </div>
+        <div>
+          <router-link :to="{ name: 'ProductDetail' }">
+            <button @click="addCurrentProduct(speaker)" class="btn-orange">
+              SEE product
+            </button>
+          </router-link>
+        </div>
       </div>
-    </div>
-    <div class="speaker-left">
-      <img
-        class="img-speaker"
-        src="../assets/product-zx7-speaker/desktop/image-category-page-preview.jpg"
-        alt="speaker"
-      />
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  props: ["x9"],
+  props: ["speakers"],
+  methods: {
+    ...mapActions(["currentProduct"]),
+
+    addCurrentProduct(product) {
+      this.currentProduct(product);
+    },
+  },
 };
 </script>
 
@@ -55,14 +69,13 @@ export default {
       margin-top: 110px;
       flex-direction: row;
       @media only screen and (max-width: 768px) {
-        flex-direction: column-reverse;
         width: 689px;
+        flex-direction: column;
         gap: 30px;
         margin: 0 39px;
       }
       @media only screen and (max-width: 376px) {
         margin: 0 24px;
-        width: 375px;
       }
       .speaker-left {
         flex-basis: 50%;
@@ -84,24 +97,20 @@ export default {
         }
       }
 
-      .speaker-right-mark-I {
+      .speaker-right {
         gap: 32px;
         flex-basis: 50%;
         width: 555px;
-        padding-right: 125px;
-        padding-left: 0;
+        padding-left: 125px;
         justify-content: center;
         align-items: flex-start;
         @media only screen and (max-width: 768px) {
           text-align: center;
           align-items: center;
-          flex-basis: 100%;
-          padding-right: 0;
-          width: 689px;
-          margin-bottom: 60px;
         }
         @media only screen and (max-width: 376px) {
           width: 327px;
+          padding: 0;
         }
       }
     }

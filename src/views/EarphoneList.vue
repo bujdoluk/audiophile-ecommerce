@@ -15,7 +15,7 @@
           {{ earphone.text }}
         </div>
         <div>
-          <router-link :to="{ name: 'EarphoneProductDetail' }">
+          <router-link :to="{ name: 'ProductDetail' }">
             <button @click="addCurrentProduct(earphone)" class="btn-orange">
               SEE product
             </button>
@@ -45,7 +45,7 @@ export default {
   margin-top: 110px;
   flex-direction: row;
   width: 689px;
-  margin: 0 39px;
+  margin: 120px 39px;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
   }

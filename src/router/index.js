@@ -3,8 +3,7 @@ import Home from '../views/Home.vue';
 import Headphones from '../views/Headphones.vue';
 import Earphones from '../views/Earphones.vue';
 import Speakers from '../views/Speakers.vue';
-import EarphoneProductDetail from '../views/EarphoneProductDetail.vue';
-import HeadphoneProductDetail from '../views/HeadphoneProductDetail.vue';
+import ProductDetail from '../views/ProductDetail.vue';
 import Checkout from '../views/Checkout.vue';
 
 const routes = [
@@ -41,19 +40,11 @@ const routes = [
     }
   },
   {
-    path: '/earphoneproductdetail',
-    name: 'EarphoneProductDetail',
-    component: EarphoneProductDetail,
+    path: '/productdetail',
+    name: 'ProductDetail',
+    component: ProductDetail,
     meta: {
-      title: "EarphoneDetail",
-    }
-  },
-  {
-    path: '/headphoneproductdetail',
-    name: 'HeadphoneProductDetail',
-    component: HeadphoneProductDetail,
-    meta: {
-      title: "HeadphoneDetail",
+      title: "ProductDetail",
     }
   },
   {

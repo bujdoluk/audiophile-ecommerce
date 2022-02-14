@@ -13,7 +13,7 @@
           </div>
 
           <div>
-            <router-link :to="{ name: 'HeadphoneProductDetail' }">
+            <router-link :to="{ name: 'ProductDetail' }">
               <button @click="addCurrentProduct(headphone)" class="btn-orange">
                 SEE product
               </button>

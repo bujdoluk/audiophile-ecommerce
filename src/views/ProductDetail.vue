@@ -112,8 +112,10 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ProductDetail",
   components: { Navbar, Gear, Footer, Categories, Youmaylike },
-  data: {
-    counter: 1,
+  data() {
+    return {
+      counter: 1,
+    };
   },
   methods: {
     ...mapActions(["addProduct"]),
@@ -131,7 +133,9 @@ export default {
     },
 
     decrease() {
-      this.counter--;
+      if (this.counter > 1) {
+        this.counter -= 1;
+      }
     },
   },
   computed: {
@@ -217,6 +221,10 @@ export default {
               background-color: #f1f1f1;
               text-align: center;
               font-weight: bold;
+              vertical-align: baseline;
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
 
             .input:hover {
