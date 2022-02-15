@@ -18,11 +18,11 @@
             <div class="info flex flex-row">
               <div class="title-price flex flex-column">
                 <div>
-                  <h6>{{ product.title }}</h6>
+                  <h6>{{ product.name }}</h6>
                 </div>
                 <div class="price-small">{{ product.price }} $</div>
               </div>
-              <div class="count"></div>
+              <div class="count">{{ product.quantity }}x</div>
             </div>
           </section>
         </div>
@@ -60,6 +60,7 @@ export default {
     },
 
     removeAllProductsFromCart() {
+      window.localStorage.clear();
       return (this.getCart.length = 0);
     },
 
@@ -79,7 +80,7 @@ export default {
   top: 96px;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  //height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
 
@@ -94,13 +95,19 @@ export default {
     .cart {
       padding: 32px 33px;
       position: absolute;
+      z-index: 10;
       top: 128px;
       right: 165px;
       border-radius: 8px;
       background: #ffffff;
-      width: 377px;
-      height: 488px;
+      max-width: 377px;
+      min-height: 230px;
+      max-height: 650px;
       z-index: 10;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.5) #d87d4a;
 
       &-detail {
         justify-content: space-between;
@@ -125,6 +132,7 @@ export default {
           color: #000000;
           opacity: 0.5;
           cursor: pointer;
+          margin-right: 20px;
         }
         .grey:hover {
           color: #d87d4a;
@@ -192,10 +200,11 @@ export default {
       .close-modal {
         width: 2rem;
         height: 2rem;
-        border-radius: 50%;
+
         position: absolute;
-        top: -0.7rem;
-        right: -0.8rem;
+        z-index: 99;
+        top: 0;
+        right: 0;
         background-color: #d87d4a;
         color: #000;
         display: flex;
@@ -208,6 +217,21 @@ export default {
         transform: scale(140%);
         transition: 0.25s ease-in-out;
       }
+    }
+
+    // Styling scollbar on Chrome, Edge and Safari
+    *::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: orange;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      border: 3px solid #d87d4a;
     }
   }
 }

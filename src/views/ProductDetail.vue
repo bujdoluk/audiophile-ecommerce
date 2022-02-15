@@ -74,14 +74,14 @@
           <div>
             <img
               class="img-left"
-              src="../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg"
+              :src="currentProduct.imagedesktoplefttop"
               alt="photo-left-1"
             />
           </div>
           <div>
             <img
               class="img-left"
-              src="../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg"
+              :src="currentProduct.imagedesktopleftbottom"
               alt="photo-left-2"
             />
           </div>
@@ -89,7 +89,7 @@
         <div class="right">
           <img
             class="img-right"
-            src="../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg"
+            :src="currentProduct.imagedesktopright"
             alt="photo-right"
           />
         </div>
@@ -272,27 +272,6 @@ export default {
       }
     }
 
-    .imgs {
-      margin-top: 110px;
-      gap: 30px;
-      .left {
-        gap: 30px;
-      }
-
-      .img-left {
-        gap: 30px;
-        width: 445px;
-        height: 280px;
-        border-radius: 8px;
-      }
-
-      .img-right {
-        width: 635px;
-        height: 592px;
-        border-radius: 8px;
-      }
-    }
-
     .features {
       height: 318px;
       margin-top: 110px;
@@ -342,6 +321,27 @@ export default {
             }
           }
         }
+      }
+    }
+
+    .imgs {
+      margin-top: 110px;
+      gap: 30px;
+      .left {
+        gap: 30px;
+      }
+
+      .img-left {
+        gap: 30px;
+        width: 445px;
+        height: 280px;
+        border-radius: 8px;
+      }
+
+      .img-right {
+        width: 635px;
+        height: 592px;
+        border-radius: 8px;
       }
     }
   }

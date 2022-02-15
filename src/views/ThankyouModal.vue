@@ -17,19 +17,25 @@
         <div class="payment-detail flex flex-row">
           <div class="left">
             <div class="content flex flex-column">
-              <div class="border flex flex-row">
+              <div
+                class="border flex flex-row"
+                v-for="(product, index) in getCart.slice(0, 1)"
+                :key="index"
+              >
                 <div>
                   <div>XX99 MK II</div>
-                  <div class="item">$ 2,999</div>
+                  <div class="item">$ {{ product.price }}</div>
                 </div>
-                <div class="item">x1</div>
+                <div class="item">x{{ product.quantity }}</div>
               </div>
-              <div class="item"><p>and 2 other item(s)</p></div>
+              <div class="item">
+                <p>and {{ getCart.length - 1 }} other item(s)</p>
+              </div>
             </div>
           </div>
           <div class="right flex flex-column">
             <div class="grand">grand total</div>
-            <div>$ 5,446</div>
+            <div>$ {{ grandPrice() }}</div>
           </div>
         </div>
         <div>
@@ -48,24 +54,37 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import { mapMutations } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ThankyouModal",
   components: {
     Navbar,
   },
   methods: {
-    ...mapMutations(["TOGGLE_THANKYOU_MODAL"]),
+    ...mapActions(["toggleThankYouModal"]),
 
-    checkClick(e) {
-      if (e.target === this.$refs.modalWrapThankYou) {
-        this.TOGGLE_THANKYOU_MODAL();
+    hasProductInCart() {
+      return this.getCart.length > 0;
+    },
+
+    grandPrice() {
+      if (this.hasProductInCart()) {
+        return (
+          this.getCart.reduce((current, next) => current + next.price, 0) *
+            1.2 +
+          50
+        ).toFixed(2);
+      } else {
+        this.getCart.reduce((current, next) => current + next.price, 0);
       }
     },
 
     closeThankYou() {
-      this.TOGGLE_THANKYOU_MODAL();
+      this.toggleThankYouModal();
     },
+  },
+  computed: {
+    ...mapGetters(["getCart"]),
   },
 };
 </script>

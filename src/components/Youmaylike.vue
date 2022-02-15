@@ -2,7 +2,11 @@
   <div>
     <div class="title">You may also like</div>
     <div class="youmaylike flex flex-row">
-      <div class="item flex flex-column">
+      <div
+        class="item flex flex-column"
+        v-for="(headphone, index) in getHeadphones.slice(1, 2)"
+        :key="index"
+      >
         <div>
           <img
             class="img"
@@ -11,9 +15,17 @@
           />
         </div>
         <h4>XX99 Mark I</h4>
-        <button class="btn-orange">SEE product</button>
+        <router-link :to="{ name: 'ProductDetail' }" @click="scrollToTop">
+          <button class="btn-orange" @click="addCurrentProduct(headphone)">
+            SEE product
+          </button>
+        </router-link>
       </div>
-      <div class="item flex flex-column">
+      <div
+        class="item flex flex-column"
+        v-for="(headphone, index) in getHeadphones.slice(0, 1)"
+        :key="index"
+      >
         <div>
           <img
             class="img"
@@ -22,9 +34,17 @@
           />
         </div>
         <h4>XX59</h4>
-        <button class="btn-orange">SEE product</button>
+        <router-link :to="{ name: 'ProductDetail' }" @click="scrollToTop">
+          <button class="btn-orange" @click="addCurrentProduct(headphone)">
+            SEE product
+          </button>
+        </router-link>
       </div>
-      <div class="item flex flex-column">
+      <div
+        class="item flex flex-column"
+        v-for="(speaker, index) in getSpeakers.slice(1, 2)"
+        :key="index"
+      >
         <div>
           <img
             class="img"
@@ -33,14 +53,34 @@
           />
         </div>
         <h4>ZX9 Speaker</h4>
-        <button class="btn-orange">SEE product</button>
+        <router-link :to="{ name: 'ProductDetail' }" @click="scrollToTop">
+          <button class="btn-orange" @click="addCurrentProduct(speaker)">
+            SEE product
+          </button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapActions, mapGetters } from "vuex";
+export default {
+  methods: {
+    ...mapActions(["currentProduct"]),
+
+    addCurrentProduct(product) {
+      this.currentProduct(product);
+    },
+
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
+  },
+  computed: {
+    ...mapGetters(["getSpeakers", "getHeadphones"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

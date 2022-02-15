@@ -23,8 +23,6 @@ export default {
     CartModal,
     ThankyouModal,
   },
-
-  methods: {},
   computed: {
     ...mapState(["cartModal", "thankyouModal"]),
   },
@@ -308,5 +306,11 @@ h6 {
 .thankyou-enter-from,
 .thankyou-leave-to {
   transform: translateX(-2000px);
+}
+
+// Errors
+
+.error {
+  color: red;
 }
 </style>

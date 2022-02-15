@@ -1,28 +1,26 @@
 <template>
   <div>
-    <section
-      class="earphone flex"
-      v-for="(earphone, index) in earphones"
-      :key="index"
-    >
-      <div class="earphone-left">
-        <img class="img-earphone" :src="earphone.image" alt="earphone" />
-      </div>
-      <div class="earphone-right flex flex-column">
-        <div class="new-orange">new product</div>
-        <div class="name">{{ earphone.title }}</div>
-        <div class="text">
-          {{ earphone.text }}
+    <div v-for="(earphone, index) in earphones" :key="index">
+      <section class="earphone flex">
+        <div class="earphone-left">
+          <img class="img-earphone" :src="earphone.image" alt="earphone" />
         </div>
-        <div>
-          <router-link :to="{ name: 'ProductDetail' }">
-            <button @click="addCurrentProduct(earphone)" class="btn-orange">
-              SEE product
-            </button>
-          </router-link>
+        <div class="earphone-right flex flex-column">
+          <div class="new-orange">new product</div>
+          <div class="name">{{ earphone.title }}</div>
+          <div class="text">
+            {{ earphone.text }}
+          </div>
+          <div>
+            <router-link :to="{ name: 'ProductDetail' }">
+              <button @click="addCurrentProduct(earphone)" class="btn-orange">
+                SEE product
+              </button>
+            </router-link>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 

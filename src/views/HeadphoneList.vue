@@ -22,42 +22,6 @@
         </div>
         <div></div>
       </section>
-      <!-- <section class="headphone flex mark-I">
-        <div class="headphone-right-mark-I flex flex-column">
-          <div class="name">XX99 mark I heaphones</div>
-          <div class="text">
-            As the gold standart for headphones, the classic XX99 Mark I offers
-            detailed and accurate audio reproduction for audiophiles, mixing
-            engineers, and musix adicionados alike in studios and on the go.
-          </div>
-          <div>
-            <router-link to="/productdetail">
-              <button class="btn-orange">SEE product</button>
-            </router-link>
-          </div>
-        </div>
-        <div class="headphone-left">
-          <img class="img-headphone" :src="headphone.image" alt="headphone" />
-        </div>
-      </section>
-      <section class="headphone flex">
-        <div class="headphone-left">
-          <img class="img-headphone" :src="headphone.image" alt="headphone" />
-        </div>
-        <div class="headphone-right flex flex-column">
-          <div class="name">XX59 heaphones</div>
-          <div class="text">
-            Enjoy your audio almost anywhere and customize it to your specific
-            tastes with the XX59 headphones. The stylish yet durable versatile
-            wireless headset is brilliant companion at home or on the move.
-          </div>
-          <div>
-            <router-link to="/productdetail">
-              <button class="btn-orange">SEE product</button>
-            </router-link>
-          </div>
-        </div>
-      </section> -->
     </div>
   </div>
 </template>

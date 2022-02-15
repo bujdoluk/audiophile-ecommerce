@@ -2,7 +2,11 @@
   <div class="home">
     <Navbar />
     <div class="content">
-      <div class="content-details flex flex-row">
+      <div
+        class="content-details flex flex-row"
+        v-for="(headphone, index) in getHeadphones.slice(2, 3)"
+        :key="index"
+      >
         <div class="left flex flex-column">
           <div class="new">new product</div>
           <div class="name">XX99 mark II headphones</div>
@@ -11,7 +15,11 @@
             made for the passionate music enthusiast.
           </div>
           <div>
-            <button class="btn-orange">See Product</button>
+            <router-link :to="{ name: 'ProductDetail' }">
+              <button class="btn-orange" @click="addCurrentProduct(headphone)">
+                SEE product
+              </button>
+            </router-link>
           </div>
         </div>
         <div class="right">
@@ -20,7 +28,11 @@
       </div>
     </div>
     <Categories />
-    <section class="speaker flex">
+    <section
+      class="speaker flex"
+      v-for="(speaker, index) in getSpeakers.slice(1, 2)"
+      :key="index"
+    >
       <div class="speaker-left">
         <img
           class="img-speaker"
@@ -35,20 +47,36 @@
           truly remarkable sound.
         </div>
         <div>
-          <button class="btn-black">SEE product</button>
+          <router-link :to="{ name: 'ProductDetail' }">
+            <button class="btn-black" @click="addCurrentProduct(speaker)">
+              SEE product
+            </button>
+          </router-link>
         </div>
       </div>
       <div></div>
     </section>
-    <section class="speaker-2 flex">
+    <section
+      class="speaker-2 flex"
+      v-for="(speaker, index) in getSpeakers.slice(0, 1)"
+      :key="index"
+    >
       <div class="speaker-2-content flex flex-column">
         <div class="name">ZX7 speaker</div>
         <div>
-          <button class="btn-white">see product</button>
+          <router-link :to="{ name: 'ProductDetail' }">
+            <button class="btn-white" @click="addCurrentProduct(speaker)">
+              SEE product
+            </button>
+          </router-link>
         </div>
       </div>
     </section>
-    <section class="speaker-3 flex">
+    <section
+      class="speaker-3 flex"
+      v-for="(earphone, index) in getEarphones.slice(0, 1)"
+      :key="index"
+    >
       <div class="speaker-3-left">
         <img
           class="img"
@@ -59,7 +87,11 @@
       <div class="speaker-3-right flex flex-column">
         <div class="name">YX1 earphones</div>
         <div>
-          <button class="btn-white">see product</button>
+          <router-link :to="{ name: 'ProductDetail' }">
+            <button class="btn-white" @click="addCurrentProduct(earphone)">
+              SEE product
+            </button>
+          </router-link>
         </div>
       </div>
     </section>
@@ -69,7 +101,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Navbar from "../components/Navbar.vue";
 import Categories from "../components/Categories.vue";
 import Footer from "../components/Footer.vue";
@@ -78,14 +110,23 @@ export default {
   name: "Home",
   components: { Navbar, Categories, Footer, Gear },
   methods: {
-    ...mapMutations(["TOGGLE_CART_MODAL"]),
-
+    ...mapActions(["currentProduct"]),
     newCart() {
-      this.TOGGLE_CART_MODAL();
+      this.toggleCartModal();
+    },
+
+    addCurrentProduct(product) {
+      this.currentProduct(product);
     },
   },
   computed: {
-    ...mapGetters(["getAllProducts"]),
+    ...mapGetters([
+      "getAllProducts",
+      "getSpeakers",
+      "toggleCartModal",
+      "getEarphones",
+      "getHeadphones",
+    ]),
   },
 };
 </script>

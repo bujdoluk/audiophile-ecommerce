@@ -3,22 +3,42 @@
     <Navbar />
     <div class="back" @click="back()">Go back</div>
     <div class="content flex">
-      <form class="form">
+      <form class="form" id="checkout">
         <div class="billing">
           <h3>Checkout</h3>
           <h5>Billing Details</h5>
           <div class="billing-details flex flex-row">
             <div class="flex flex-column">
-              <label for="">Name</label>
-              <input class="right" type="text" />
+              <div class="labels flex flex-row">
+                <label for="name">Name</label>
+                <label
+                  class="error"
+                  for="name"
+                  v-for="error of v$.person.name.$errors"
+                  :key="error.$uid"
+                  >{{ error.$message }}</label
+                >
+              </div>
+
+              <input class="right" type="text" v-model="name" />
             </div>
             <div class="flex flex-column">
-              <label for="">Email Address</label>
-              <input type="email" />
+              <div class="labels flex flex-row">
+                <label for="">Email Address</label>
+                <label
+                  class="error"
+                  for="name"
+                  v-for="error of v$.person.email.$errors"
+                  :key="error.$uid"
+                  >{{ error.$message }}</label
+                >
+              </div>
+
+              <input type="email" v-model="email" />
             </div>
             <div class="flex flex-column">
               <label for="">Phone Number</label>
-              <input type="text" />
+              <input type="text" v-model="phoneNumber" />
             </div>
           </div>
         </div>
@@ -27,22 +47,22 @@
           <div class="shipping-details flex flex-column">
             <div class="flex flex-column">
               <label for="">Address</label>
-              <input class="long" type="text" />
+              <input class="long" type="text" v-model="address" />
             </div>
             <div class="flex flex-row">
               <div class="flex flex-column">
                 <label for="">ZIP Code</label>
-                <input class="right" type="text" />
+                <input class="right" type="text" v-model="zipcode" />
               </div>
               <div class="flex flex-column">
                 <label for="">City</label>
-                <input type="text" />
+                <input type="text" v-model="city" />
               </div>
             </div>
 
             <div class="flex flex-column">
               <label for="">Country</label>
-              <input type="text" />
+              <input type="text" v-model="country" />
             </div>
           </div>
         </div>
@@ -73,7 +93,7 @@
                 <p class="placeholder">Cash on Delivery</p>
               </div>
               <div class="flex flex-column">
-                <label for="">e-money PIN</label>
+                <label for="pin">e-money PIN</label>
                 <input type="text" />
               </div>
             </div>
@@ -81,11 +101,15 @@
         </div>
       </form>
       <div class="pay flex flex-column">
-        <div class="content" v-for="(product, index) in getCart" :key="index">
+        <div class="content">
           <div>
             <h4 class="bottom">Summary</h4>
           </div>
-          <section class="content-details flex flex-row">
+          <section
+            class="content-details flex flex-row"
+            v-for="(product, index) in getCart"
+            :key="index"
+          >
             <div>
               <img
                 class="img"
@@ -122,7 +146,13 @@
               <span>$ {{ grandPrice() }}</span>
             </div>
           </div>
-          <button type="submit" @click="thankyouModal" class="btn-orange btn">
+          <button
+            type="submit"
+            form="checkout"
+            class="btn-orange btn"
+            @submit.prevent="submitForm"
+          >
+            <!-- @click.prevent="thankyouModal"-->
             Continue & pay
           </button>
         </div>
@@ -136,15 +166,65 @@
 import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 import { mapGetters, mapActions } from "vuex";
+import useValidate from "@vuelidate/core";
+import {
+  required,
+  minLength,
+  email,
+  alpha,
+  numeric,
+  helpers,
+} from "@vuelidate/validators";
 
 export default {
   name: "Checkout",
   components: { Navbar, Footer },
+  data() {
+    return {
+      v$: useValidate(),
+      person: {
+        name: "",
+        email: "",
+        phoneNumber: "",
+        address: "",
+        zipcode: "",
+        city: "",
+        country: "",
+      },
+    };
+  },
+  validations() {
+    return {
+      person: {
+        name: {
+          required: helpers.withMessage("First name is required", required),
+          alpha,
+          minLength: minLength(6),
+          $autoDirty: true,
+        },
+        email: { required, email, $autoDirty: true },
+        phoneNumber: { required, minLength: minLength(10), $autoDirty: true },
+        address: { required, $autoDirty: true },
+        zipcode: { required, numeric, $autoDirty: true },
+        city: { required, alpha, $autoDirty: true },
+        country: { required, alpha, $autoDirty: true },
+      },
+    };
+  },
   methods: {
-    ...mapActions(["toggleCartModal"]),
+    ...mapActions(["toggleCartModal", "toggleThankYouModal"]),
 
     thankyouModal() {
-      this.TOGGLE_THANKYOU_MODAL();
+      this.toggleThankYouModal();
+    },
+
+    submitForm() {
+      this.v$.$validate();
+      if (!this.v$.$error) {
+        alert("Form successfully submitted.");
+      } else {
+        alert("Form not passed validation");
+      }
     },
 
     back() {
@@ -216,7 +296,7 @@ export default {
     width: 1110px;
     margin: 0 auto;
     gap: 30px;
-    margin-bottom: 110px;
+    margin-bottom: 15px;
     flex-direction: row;
     @media only screen and (max-width: 768px) {
       width: 650px;
@@ -231,6 +311,7 @@ export default {
       background-color: #ffffff;
       border-radius: 8px;
       padding: 54px 48px;
+
       @media only screen and (max-width: 768px) {
         width: 689px;
         padding: 30px 27.5px;
@@ -239,6 +320,11 @@ export default {
       .billing {
         .billing-details {
           flex-wrap: wrap;
+
+          // Errors
+          .labels {
+            justify-content: space-between;
+          }
 
           input {
             cursor: pointer;
@@ -331,15 +417,21 @@ export default {
 
     .pay {
       width: 350px;
-      height: 612px;
       background-color: #ffffff;
       border-radius: 8px;
+      min-height: 230px;
+      max-height: 650px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.5) #d87d4a;
       @media only screen and (max-width: 768px) {
         width: 689px;
       }
 
       .content {
         padding: 32px 33px;
+
         @media only screen and (max-width: 768px) {
           padding: 0 33px 32px 33px;
           width: 623px;

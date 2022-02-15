@@ -1,28 +1,26 @@
 <template>
   <div>
-    <section
-      class="speaker flex"
-      v-for="(speaker, index) in speakers"
-      :key="index"
-    >
-      <div class="speaker-left">
-        <img class="img-speaker" :src="speaker.image" alt="speaker" />
-      </div>
-      <div class="speaker-right flex flex-column">
-        <div class="new-orange">new product</div>
-        <div class="name">{{ speaker.title }}</div>
-        <div class="text">
-          {{ speaker.text }}
+    <div v-for="(speaker, index) in speakers" :key="index">
+      <section class="speaker flex">
+        <div class="speaker-left">
+          <img class="img-speaker" :src="speaker.image" alt="speaker" />
         </div>
-        <div>
-          <router-link :to="{ name: 'ProductDetail' }">
-            <button @click="addCurrentProduct(speaker)" class="btn-orange">
-              SEE product
-            </button>
-          </router-link>
+        <div class="speaker-right flex flex-column">
+          <div class="new-orange">new product</div>
+          <div class="name">{{ speaker.title }}</div>
+          <div class="text">
+            {{ speaker.text }}
+          </div>
+          <div>
+            <router-link :to="{ name: 'ProductDetail' }">
+              <button @click="addCurrentProduct(speaker)" class="btn-orange">
+                SEE product
+              </button>
+            </router-link>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
