@@ -3,8 +3,8 @@
     <Navbar />
     <div class="back" @click="back()">Go back</div>
     <div class="content flex flex-column">
-      <section class="product flex flex-row">
-        <div class="product-left">
+      <section class="product flex">
+        <div class="product-left flex">
           <img class="img-product" :src="currentProduct.image" alt="product" />
         </div>
         <div class="product-right flex flex-column">
@@ -35,7 +35,7 @@
         <div></div>
       </section>
 
-      <section class="features flex flex-row">
+      <section class="features flex">
         <div class="features-left flex flex-column">
           <div class="title">Features</div>
           <div class="text">
@@ -69,7 +69,7 @@
           </div>
         </div>
       </section>
-      <section class="imgs flex flex-row">
+      <section class="imgs flex">
         <div class="left flex flex-column">
           <div>
             <img
@@ -168,6 +168,10 @@ export default {
     margin: 0 auto;
     margin-top: 128px;
     cursor: pointer;
+    @media only screen and (max-width: 376px) {
+      margin-left: 24px;
+      width: 376px;
+    }
   }
 
   .back:hover {
@@ -182,13 +186,27 @@ export default {
 
     .product {
       margin-top: 110px;
+      flex-direction: row;
+      @media only screen and (max-width: 376px) {
+        flex-direction: column;
+        margin-top: 90px;
+      }
       .product-left {
         flex-basis: 50%;
+        @media only screen and (max-width: 376px) {
+          width: 376px;
+          justify-content: center;
+          margin-bottom: 32px;
+        }
 
         .img-product {
           border-radius: 8px;
           width: 555px;
           height: 560px;
+          @media only screen and (max-width: 376px) {
+            width: 327px;
+            height: 327px;
+          }
         }
       }
 
@@ -199,6 +217,11 @@ export default {
         padding-left: 125px;
         justify-content: center;
         align-items: flex-start;
+        @media only screen and (max-width: 376px) {
+          width: 376px;
+          padding-left: 0;
+          margin: 0 24px;
+        }
 
         .counter {
           gap: 16px;
@@ -275,9 +298,20 @@ export default {
     .features {
       height: 318px;
       margin-top: 110px;
+      flex-direction: row;
+      @media only screen and (max-width: 376px) {
+        margin-top: 88px;
+        flex-direction: column;
+        width: 376px;
+      }
       .features-left {
         flex-basis: 50%;
         gap: 32px;
+        @media only screen and (max-width: 376px) {
+          width: 376px;
+          height: 475px;
+          margin: 0 24px;
+        }
 
         .title {
           font-style: normal;
@@ -294,6 +328,12 @@ export default {
         flex-basis: 50%;
         padding-left: 125px;
         height: 225px;
+        @media only screen and (max-width: 376px) {
+          padding-left: 0;
+          width: 376px;
+          height: 217px;
+          margin: 88px 24px 0 24px;
+        }
         .title {
           font-style: normal;
           font-weight: bold;
@@ -327,6 +367,11 @@ export default {
     .imgs {
       margin-top: 110px;
       gap: 30px;
+      flex-direction: row;
+      @media only screen and (max-width: 376px) {
+        flex-direction: column;
+        margin-top: 510px;
+      }
       .left {
         gap: 30px;
       }
@@ -336,12 +381,22 @@ export default {
         width: 445px;
         height: 280px;
         border-radius: 8px;
+        @media only screen and (max-width: 376px) {
+          width: 327px;
+          height: 174px;
+          margin: 0 24px;
+        }
       }
 
       .img-right {
         width: 635px;
         height: 592px;
         border-radius: 8px;
+        @media only screen and (max-width: 376px) {
+          width: 327px;
+          height: 756px;
+          margin: 0 24px;
+        }
       }
     }
   }

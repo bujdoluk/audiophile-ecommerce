@@ -177,12 +177,18 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 56px;
+  @media only screen and (max-width: 376px) {
+    font-size: 28px;
+  }
 }
 .text {
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
   opacity: 0.5;
+  @media only screen and (max-width: 376px) {
+    width: 327px;
+  }
 }
 
 .price {
@@ -260,6 +266,10 @@ h3 {
   letter-spacing: 1.14286px;
   text-transform: uppercase;
   margin-bottom: 41px;
+  @media only screen and (max-width: 376px) {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
 }
 
 h4 {

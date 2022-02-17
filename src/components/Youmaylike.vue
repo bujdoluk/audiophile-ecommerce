@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="title">You may also like</div>
-    <div class="youmaylike flex flex-row">
+    <div class="youmaylike flex">
       <div
         class="item flex flex-column"
         v-for="(headphone, index) in getHeadphones.slice(1, 2)"
         :key="index"
       >
-        <div>
+        <div class="image-container">
           <img
             class="img"
             src="../assets/shared/desktop/image-xx99-mark-one-headphones.jpg"
@@ -26,7 +26,7 @@
         v-for="(headphone, index) in getHeadphones.slice(0, 1)"
         :key="index"
       >
-        <div>
+        <div class="image-container">
           <img
             class="img"
             src="../assets/shared/desktop/image-xx59-headphones.jpg"
@@ -45,7 +45,7 @@
         v-for="(speaker, index) in getSpeakers.slice(1, 2)"
         :key="index"
       >
-        <div>
+        <div class="image-container">
           <img
             class="img"
             src="../assets/shared/desktop/image-zx9-speaker.jpg"
@@ -98,16 +98,31 @@ export default {
 .youmaylike {
   width: 1110px;
   gap: 30px;
+  flex-direction: row;
+  @media only screen and (max-width: 376px) {
+    width: 376px;
+    flex-direction: column;
+  }
 
   .item {
     gap: 40px;
     justify-content: center;
     align-items: center;
+
     .img {
       width: 350px;
       height: 318px;
       border-radius: 8px;
+      @media only screen and (max-width: 376px) {
+        height: 200px;
+        width: 327px;
+        object-fit: cover;
+      }
     }
+  }
+
+  .item:last-child {
+    margin-bottom: 100px;
   }
 }
 </style>

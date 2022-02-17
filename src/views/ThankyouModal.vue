@@ -14,7 +14,7 @@
         <div>
           <p class="grey">You will recieve an email confirmation shortly.</p>
         </div>
-        <div class="payment-detail flex flex-row">
+        <div class="payment-detail flex">
           <div class="left">
             <div class="content flex flex-column">
               <div
@@ -22,8 +22,9 @@
                 v-for="(product, index) in getCart.slice(0, 1)"
                 :key="index"
               >
+                <img class="img-cart" :src="product.image" />
                 <div>
-                  <div>XX99 MK II</div>
+                  <div>{{ product.name }}</div>
                   <div class="item">$ {{ product.price }}</div>
                 </div>
                 <div class="item">x{{ product.quantity }}</div>
@@ -98,6 +99,9 @@ export default {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
+  @media only screen and (max-width: 376px) {
+    width: 376px;
+  }
 
   .modal-thankyou-content {
     position: relative;
@@ -106,6 +110,9 @@ export default {
     width: 100%;
     height: 1200px;
     background-color: transparent;
+    @media only screen and (max-width: 376px) {
+      width: 376px;
+    }
 
     .thankyou {
       padding: 48px 48px;
@@ -120,6 +127,11 @@ export default {
       height: 581px;
       z-index: 10;
       gap: 24px;
+      @media only screen and (max-width: 376px) {
+        width: 327px;
+        height: 620px;
+        padding: 32px 32px;
+      }
 
       .orange {
         width: 64px;
@@ -149,12 +161,23 @@ export default {
         border-radius: 8px;
         background-color: transparent;
         font-weight: bold;
+        flex-direction: row;
+        @media only screen and (max-width: 376px) {
+          flex-direction: column;
+          width: 263px;
+          height: 232px;
+        }
 
         .left {
           width: 246px;
           background: #f1f1f1;
           color: #000000;
           border-radius: 8px 0 0 8px;
+          @media only screen and (max-width: 376px) {
+            width: 263px;
+
+            border-radius: 8px 8px 0 0;
+          }
 
           .content {
             padding: 24px;
@@ -164,6 +187,11 @@ export default {
               margin-bottom: 12px;
               justify-content: space-between;
               align-items: center;
+
+              .img-cart {
+                width: 2.8rem;
+                height: 3.2rem;
+              }
             }
 
             .item {
@@ -187,6 +215,11 @@ export default {
           justify-content: center;
           padding-left: 32px;
           font-size: 18px;
+          @media only screen and (max-width: 376px) {
+            width: 263px;
+            height: 92px;
+            border-radius: 0 0 8px 8px;
+          }
 
           .grand {
             font-style: normal;
@@ -204,6 +237,9 @@ export default {
       .btn {
         width: 444px;
         height: 48px;
+        @media only screen and (max-width: 376px) {
+          width: 263px;
+        }
       }
     }
   }

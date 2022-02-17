@@ -10,7 +10,7 @@
           />
         </svg>
       </div>
-      <div class="category flex flex-row">
+      <div class="category flex flex-row" v-if="!mobileView">
         <div>
           <router-link class="link" :to="{ name: 'Home' }"> Home </router-link>
         </div>
@@ -53,6 +53,7 @@ export default {
   data() {
     return {
       mobileView: false,
+      showMenu: false,
     };
   },
 
@@ -61,7 +62,7 @@ export default {
     window.addEventListener("resize", this.checkView);
   },
   methods: {
-    ...mapActions(["toggleCartModal"]),
+    ...mapActions(["toggleCartModal", "toggleEmptyCartModal"]),
 
     checkView() {
       this.mobileView = window.innerWidth <= 376;
@@ -106,6 +107,10 @@ export default {
     @media only screen and (max-width: 768px) {
       padding: 35px 40px;
       width: 768px;
+    }
+    @media only screen and (max-width: 376px) {
+      padding: 35px 40px;
+      width: 376px;
     }
 
     .burger {

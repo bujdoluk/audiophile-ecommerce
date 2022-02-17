@@ -110,7 +110,7 @@ export default {};
     flex-direction: column;
     width: 375px;
     height: 100%;
-    margin: 40px 0;
+    margin: 0 0;
     gap: 60px;
   }
 }

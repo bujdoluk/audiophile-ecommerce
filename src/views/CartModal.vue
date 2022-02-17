@@ -1,8 +1,10 @@
 <template>
   <div class="modal-wrap">
     <form class="modal-content">
-      <!-- <span v-if="!hasProductInCart">No products in cart.</span> -->
-      <div class="cart flex flex-column">
+      <span class="empty-cart" v-if="!hasProductInCart()"
+        >No products added. Add some products to the cart.</span
+      >
+      <div class="cart flex flex-column" v-if="hasProductInCart()">
         <div class="cart-detail flex flex-row">
           <div class="cart-name">Cart ({{ getCart.length }})</div>
           <div class="grey" @click="removeAllProductsFromCart()">
@@ -83,6 +85,9 @@ export default {
   //height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
+  @media only screen and (max-width: 376px) {
+    width: 376px;
+  }
 
   .modal-content {
     position: relative;
@@ -91,6 +96,9 @@ export default {
     width: 100%;
     height: 1200px;
     background-color: transparent;
+    @media only screen and (max-width: 376px) {
+      width: 376px;
+    }
 
     .cart {
       padding: 32px 33px;
@@ -108,6 +116,11 @@ export default {
       overflow-x: hidden;
       scrollbar-width: thin;
       scrollbar-color: rgba(0, 0, 0, 0.5) #d87d4a;
+      @media only screen and (max-width: 376px) {
+        width: 327px;
+        right: 0;
+        left: 24px;
+      }
 
       &-detail {
         justify-content: space-between;
@@ -173,6 +186,9 @@ export default {
         width: 313px;
         height: 25px;
         margin-bottom: 24px;
+        @media only screen and (max-width: 376px) {
+          width: 271px;
+        }
         .grey {
           font-style: normal;
           font-weight: bold;
@@ -195,6 +211,9 @@ export default {
       .btn {
         width: 313px;
         cursor: pointer;
+        @media only screen and (max-width: 376px) {
+          width: 271px;
+        }
       }
 
       .close-modal {
@@ -216,6 +235,23 @@ export default {
       .close-modal:hover {
         transform: scale(140%);
         transition: 0.25s ease-in-out;
+      }
+    }
+
+    .empty-cart {
+      padding: 32px 33px;
+      position: absolute;
+      z-index: 10;
+      top: 128px;
+      right: 165px;
+      border-radius: 8px;
+      background: #ffffff;
+      max-width: 377px;
+      min-height: 100px;
+      z-index: 10;
+      @media only screen and (max-width: 376px) {
+        width: 328px;
+        left: 24px;
       }
     }
 

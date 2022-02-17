@@ -49,7 +49,7 @@
               <label for="">Address</label>
               <input class="long" type="text" v-model="address" />
             </div>
-            <div class="flex flex-row">
+            <div class="zipcode flex">
               <div class="flex flex-column">
                 <label for="">ZIP Code</label>
                 <input class="right" type="text" v-model="zipcode" />
@@ -66,7 +66,37 @@
             </div>
           </div>
         </div>
-        <div class="payment">
+        <!-- Mobile View -->
+        <div class="payment" v-if="mobileView">
+          <h5>Payment Details</h5>
+          <div class="right flex flex-column">
+            <div>
+              <label class="bottom">Payment Method</label>
+            </div>
+            <div class="right-details flex flex-column">
+              <input type="text" />
+              <input id="emoney" class="checkbox" type="radio" checked />
+              <label for="emoney"></label>
+              <p class="placeholder">e-Money</p>
+            </div>
+            <div class="right-details flex flex-column">
+              <input type="text" />
+              <input id="cash" class="checkbox" type="radio" />
+              <label for="cash"></label>
+              <p class="placeholder">Cash on Delivery</p>
+            </div>
+            <div class="flex flex-column">
+              <label>e-money Number</label>
+              <input type="text" class="emoney_pin_number" />
+            </div>
+            <div class="flex flex-column">
+              <label for="pin">e-money PIN</label>
+              <input type="text" class="emoney_pin_number" />
+            </div>
+          </div>
+        </div>
+        <!-- Desktop View -->
+        <div class="payment" v-if="!mobileView">
           <h5>Payment Details</h5>
           <div class="payment-details flex flex-row">
             <div class="left flex flex-column">
@@ -150,9 +180,8 @@
             type="submit"
             form="checkout"
             class="btn-orange btn"
-            @submit.prevent="submitForm"
+            @click.prevent="thankyouModal"
           >
-            <!-- @click.prevent="thankyouModal"-->
             Continue & pay
           </button>
         </div>
@@ -191,6 +220,8 @@ export default {
         city: "",
         country: "",
       },
+      mobileView: false,
+      showMenu: false,
     };
   },
   validations() {
@@ -211,21 +242,29 @@ export default {
       },
     };
   },
+  created() {
+    this.checkView();
+    window.addEventListener("resize", this.checkView);
+  },
   methods: {
     ...mapActions(["toggleCartModal", "toggleThankYouModal"]),
+
+    checkView() {
+      this.mobileView = window.innerWidth <= 376;
+    },
 
     thankyouModal() {
       this.toggleThankYouModal();
     },
 
-    submitForm() {
-      this.v$.$validate();
-      if (!this.v$.$error) {
-        alert("Form successfully submitted.");
-      } else {
-        alert("Form not passed validation");
-      }
-    },
+    // submitForm() {
+    //   this.v$.$validate();
+    //   if (!this.v$.$error) {
+    //     alert("Form successfully submitted.");
+    //   } else {
+    //     alert("Form not passed validation");
+    //   }
+    // },
 
     back() {
       history.back();
@@ -304,6 +343,10 @@ export default {
       flex-direction: column;
       gap: 30px;
     }
+    @media only screen and (max-width: 376px) {
+      width: 327px;
+      margin: 0 24px;
+    }
 
     .form {
       width: 730px;
@@ -315,6 +358,10 @@ export default {
       @media only screen and (max-width: 768px) {
         width: 689px;
         padding: 30px 27.5px;
+      }
+      @media only screen and (max-width: 376px) {
+        width: 327px;
+        height: 1450px;
       }
 
       .billing {
@@ -328,6 +375,9 @@ export default {
 
           input {
             cursor: pointer;
+            @media only screen and (max-width: 376px) {
+              width: 280px;
+            }
           }
         }
       }
@@ -335,14 +385,27 @@ export default {
       .shipping {
         .shipping-details {
           flex-wrap: wrap;
+
+          .zipcode {
+            flex-direction: row;
+            @media only screen and (max-width: 376px) {
+              flex-direction: column;
+            }
+          }
           input {
             cursor: pointer;
+            @media only screen and (max-width: 376px) {
+              width: 280px;
+            }
           }
         }
       }
 
       .payment {
         margin-top: 61px;
+        @media only screen and (max-width: 376px) {
+          width: 376px;
+        }
 
         .left {
           justify-content: space-between;
@@ -354,6 +417,9 @@ export default {
 
             input {
               cursor: pointer;
+              @media only screen and (max-width: 376px) {
+                width: 275px;
+              }
             }
 
             .placeholder {
@@ -411,6 +477,12 @@ export default {
               background: rgba(216, 125, 74, 1);
             }
           }
+
+          .emoney_pin_number {
+            @media only screen and (max-width: 376px) {
+              width: 275px;
+            }
+          }
         }
       }
     }
@@ -428,6 +500,10 @@ export default {
       @media only screen and (max-width: 768px) {
         width: 689px;
       }
+      @media only screen and (max-width: 376px) {
+        width: 327px;
+        margin-bottom: 97px;
+      }
 
       .content {
         padding: 32px 33px;
@@ -435,6 +511,11 @@ export default {
         @media only screen and (max-width: 768px) {
           padding: 0 33px 32px 33px;
           width: 623px;
+        }
+        @media only screen and (max-width: 376px) {
+          width: 327px;
+          padding: 0;
+          margin: 30px 20px;
         }
 
         .bottom {
@@ -474,6 +555,9 @@ export default {
               @media only screen and (max-width: 768px) {
                 margin-left: 355px;
               }
+              @media only screen and (max-width: 376px) {
+                margin-left: 80px;
+              }
             }
           }
         }
@@ -485,6 +569,9 @@ export default {
           margin-bottom: 8px;
           @media only screen and (max-width: 768px) {
             width: 550px;
+          }
+          @media only screen and (max-width: 376px) {
+            width: 275px;
           }
 
           .grey {
@@ -514,6 +601,9 @@ export default {
           width: 284px;
           @media only screen and (max-width: 768px) {
             width: 550px;
+          }
+          @media only screen and (max-width: 376px) {
+            width: 279px;
           }
         }
       }

@@ -84,20 +84,20 @@
     </div>
     <div class="footer-right flex flex-column">
       <div class="flex flex-row category" v-if="!mobileView">
-        <div>
+        <div class="category-link">
           <router-link class="link" :to="{ name: 'Home' }"> Home </router-link>
         </div>
-        <div>
+        <div class="category-link">
           <router-link class="link" :to="{ name: 'Headphones' }">
             Headphones
           </router-link>
         </div>
-        <div>
+        <div class="category-link">
           <router-link class="link" :to="{ name: 'Speakers' }">
             Speakers
           </router-link>
         </div>
-        <div>
+        <div class="category-link">
           <router-link class="link" :to="{ name: 'Earphones' }">
             Earphones
           </router-link>
@@ -161,7 +161,7 @@ export default {
   },
   methods: {
     checkView() {
-      this.mobileView = window.innerWidth <= 375;
+      this.mobileView = window.innerWidth <= 376;
     },
   },
   created() {
@@ -218,6 +218,15 @@ export default {
       gap: 34px;
       justify-content: flex-end;
       margin-bottom: 105px;
+      @media only screen and (max-width: 376px) {
+      }
+
+      &-link {
+        @media only screen and (max-width: 376px) {
+          margin-bottom: 20px;
+          text-transform: uppercase;
+        }
+      }
     }
 
     .social-media {

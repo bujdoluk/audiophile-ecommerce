@@ -15,6 +15,7 @@ export default createStore({
         id: 1,
         price: 599,
         image: require('../assets/product-yx1-earphones/desktop/image-category-page-preview.jpg'),
+        imageCart: require('../assets/cart/image-yx1-earphones.jpg'),
         imagedesktoplefttop: require('../assets/product-yx1-earphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-yx1-earphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-yx1-earphones/desktop/image-gallery-3.jpg'),
@@ -39,6 +40,7 @@ export default createStore({
         id: 2,
         price: 899,
         image: require('../assets/product-xx59-headphones/desktop/image-category-page-preview.jpg'),
+        imageCart: require('../assets/cart/image-xx59-headphones.jpg'),
         imagedesktoplefttop: require('../assets/product-xx59-headphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-xx59-headphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-xx59-headphones/desktop/image-gallery-3.jpg'),
@@ -59,6 +61,7 @@ export default createStore({
         id: 3,
         price: 1750,
         image: require('../assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg'),
+        imageCart: require('../assets/cart/image-xx99-mark-one-headphones.jpg'),
         imagedesktoplefttop: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-3.jpg'),
@@ -79,6 +82,7 @@ export default createStore({
         id: 4,
         price: 2999,
         image: require('../assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg'),
+        imageCart: require('../assets/cart/image-xx99-mark-two-headphones.jpg'),
         imagedesktoplefttop: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg'),
@@ -101,6 +105,7 @@ export default createStore({
         id: 5,
         price: 3500,
         image: require('../assets/product-zx7-speaker/desktop/image-category-page-preview.jpg'),
+        imageCart: require('../assets/cart/image-zx7-speaker.jpg'),
         imagedesktoplefttop: require('../assets/product-zx7-speaker//desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-zx7-speaker//desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-zx7-speaker//desktop/image-gallery-3.jpg'),
@@ -122,6 +127,7 @@ export default createStore({
         id: 6,
         price: 4500,
         image: require('../assets/product-zx9-speaker/desktop/image-category-page-preview.jpg'),
+        imageCart: require('../assets/cart/image-zx9-speaker.jpg'),
         imagedesktoplefttop: require('../assets/product-zx9-speaker/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-zx9-speaker/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-zx9-speaker/desktop/image-gallery-3.jpg'),
@@ -180,6 +186,6 @@ export default createStore({
     },
     toggleThankYouModal: (context) => {
       context.commit('TOGGLE_THANKYOU_MODAL');
-    }
+    },
   },
 })
