@@ -70,7 +70,7 @@ export default {
         width: 689px;
         flex-direction: column;
         gap: 30px;
-        margin: 0 39px;
+        margin: 110px 39px;
       }
       @media only screen and (max-width: 376px) {
         margin: 0 24px;
@@ -87,6 +87,8 @@ export default {
           height: 560px;
           @media only screen and (max-width: 768px) {
             width: 689px;
+            height: 352px;
+            object-fit: cover;
           }
           @media only screen and (max-width: 376px) {
             width: 327px;

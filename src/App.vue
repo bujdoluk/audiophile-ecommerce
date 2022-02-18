@@ -177,6 +177,9 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 56px;
+  @media only screen and (max-width: 768px) {
+    font-size: 28px;
+  }
   @media only screen and (max-width: 376px) {
     font-size: 28px;
   }
@@ -186,6 +189,23 @@ export default {
   font-weight: 500;
   font-size: 15px;
   opacity: 0.5;
+  @media only screen and (max-width: 768px) {
+    width: 339px;
+  }
+  @media only screen and (max-width: 376px) {
+    width: 327px;
+  }
+}
+
+.text-features {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  opacity: 0.5;
+  @media only screen and (max-width: 768px) {
+    width: 689px;
+    text-align: center;
+  }
   @media only screen and (max-width: 376px) {
     width: 327px;
   }

@@ -66,7 +66,7 @@ export default {
       @media only screen and (max-width: 768px) {
         width: 689px;
         height: 352px;
-        object-fit: contain;
+        object-fit: cover;
       }
       @media only screen and (max-width: 376px) {
         width: 327px;

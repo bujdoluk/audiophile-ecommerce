@@ -94,11 +94,24 @@ export default {
   text-transform: uppercase;
   margin-bottom: 64px;
   margin-top: 110px;
+  @media only screen and (max-width: 768px) {
+    width: 300px;
+  }
+  @media only screen and (max-width: 376px) {
+    margin-bottom: 110px;
+    width: 376px;
+    margin-bottom: 20px;
+  }
 }
 .youmaylike {
-  width: 1110px;
+  max-width: 1110px;
   gap: 30px;
   flex-direction: row;
+  @media only screen and (max-width: 768px) {
+    width: 691px;
+    gap: 11px;
+    margin: 0 38px;
+  }
   @media only screen and (max-width: 376px) {
     width: 376px;
     flex-direction: column;
@@ -108,14 +121,29 @@ export default {
     gap: 40px;
     justify-content: center;
     align-items: center;
+    @media only screen and (max-width: 768px) {
+      height: 318px;
+      width: 223px;
+      object-fit: cover;
+    }
+    @media only screen and (max-width: 376px) {
+      width: 300px;
+      margin-bottom: 50px;
+      gap: 20px;
+    }
 
     .img {
       width: 350px;
       height: 318px;
       border-radius: 8px;
+      @media only screen and (max-width: 768px) {
+        height: 318px;
+        width: 223px;
+        object-fit: cover;
+      }
       @media only screen and (max-width: 376px) {
-        height: 200px;
-        width: 327px;
+        height: 190px;
+        width: 199px;
         object-fit: cover;
       }
     }

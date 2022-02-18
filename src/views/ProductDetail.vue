@@ -13,14 +13,20 @@
           <div class="text">
             {{ currentProduct.text }}
           </div>
-          <div class="price">{{ currentProduct.price }} $</div>
+          <div class="price">$ {{ currentProduct.price }}</div>
           <div class="counter flex flex-row">
             <form class="buttons flex flex-row">
-              <div class="value-button flex flex-column" v-on:click="decrease">
+              <div
+                class="value-button flex flex-column"
+                v-on:click="decrease(currentProduct)"
+              >
                 -
               </div>
               <div class="input">{{ counter }}</div>
-              <div class="value-button flex flex-column" v-on:click="increase">
+              <div
+                class="value-button flex flex-column"
+                v-on:click="increase(currentProduct)"
+              >
                 +
               </div>
             </form>
@@ -38,14 +44,14 @@
       <section class="features flex">
         <div class="features-left flex flex-column">
           <div class="title">Features</div>
-          <div class="text">
+          <div class="text-features">
             {{ currentProduct.features1 }}
           </div>
-          <div class="text">
+          <div class="text-features">
             {{ currentProduct.features2 }}
           </div>
         </div>
-        <div class="features-right flex flex-column">
+        <div class="features-right flex">
           <div class="title">in the box</div>
           <div class="description">
             <ul class="flex flex-column">
@@ -122,19 +128,23 @@ export default {
 
     addProductToCart(product) {
       this.addProduct(product);
+      console.log(product.quantity);
     },
 
     back() {
       history.back();
     },
 
-    increase() {
+    increase(product) {
       this.counter++;
+      product.quantity++;
+      console.log(product.quantity++);
     },
 
-    decrease() {
+    decrease(product) {
       if (this.counter > 1) {
         this.counter -= 1;
+        product.quantity--;
       }
     },
   },
@@ -168,6 +178,10 @@ export default {
     margin: 0 auto;
     margin-top: 128px;
     cursor: pointer;
+    @media only screen and (max-width: 768px) {
+      margin-left: 39px;
+      width: 768px;
+    }
     @media only screen and (max-width: 376px) {
       margin-left: 24px;
       width: 376px;
@@ -187,14 +201,24 @@ export default {
     .product {
       margin-top: 110px;
       flex-direction: row;
+      @media only screen and (max-width: 768px) {
+        width: 768px;
+        margin: 0 39px;
+        margin-top: 110px;
+      }
       @media only screen and (max-width: 376px) {
         flex-direction: column;
         margin-top: 90px;
       }
       .product-left {
         flex-basis: 50%;
+        @media only screen and (max-width: 768px) {
+          width: 340px;
+          flex-basis: 45%;
+        }
+
         @media only screen and (max-width: 376px) {
-          width: 376px;
+          width: 300px;
           justify-content: center;
           margin-bottom: 32px;
         }
@@ -203,6 +227,11 @@ export default {
           border-radius: 8px;
           width: 555px;
           height: 560px;
+          @media only screen and (max-width: 768px) {
+            width: 281px;
+            height: 480px;
+            object-fit: cover;
+          }
           @media only screen and (max-width: 376px) {
             width: 327px;
             height: 327px;
@@ -217,10 +246,14 @@ export default {
         padding-left: 125px;
         justify-content: center;
         align-items: flex-start;
-        @media only screen and (max-width: 376px) {
-          width: 376px;
+        @media only screen and (max-width: 768px) {
+          width: 340px;
           padding-left: 0;
-          margin: 0 24px;
+          gap: 32px;
+        }
+        @media only screen and (max-width: 376px) {
+          width: 327px;
+          padding-left: 0;
         }
 
         .counter {
@@ -299,6 +332,12 @@ export default {
       height: 318px;
       margin-top: 110px;
       flex-direction: row;
+      @media only screen and (max-width: 768px) {
+        width: 768px;
+        margin: 0 39px;
+        margin-top: 110px;
+        flex-direction: column;
+      }
       @media only screen and (max-width: 376px) {
         margin-top: 88px;
         flex-direction: column;
@@ -307,10 +346,14 @@ export default {
       .features-left {
         flex-basis: 50%;
         gap: 32px;
+        @media only screen and (max-width: 768px) {
+          width: 768px;
+          height: 250px;
+        }
+
         @media only screen and (max-width: 376px) {
           width: 376px;
           height: 475px;
-          margin: 0 24px;
         }
 
         .title {
@@ -328,11 +371,17 @@ export default {
         flex-basis: 50%;
         padding-left: 125px;
         height: 225px;
+        flex-direction: column;
+        @media only screen and (max-width: 768px) {
+          margin-top: 110px;
+          width: 768px;
+          flex-direction: row;
+          padding-left: 0;
+        }
         @media only screen and (max-width: 376px) {
           padding-left: 0;
           width: 376px;
-          height: 217px;
-          margin: 88px 24px 0 24px;
+          flex-direction: column;
         }
         .title {
           font-style: normal;
@@ -348,6 +397,14 @@ export default {
         ul {
           list-style: none;
           gap: 8px;
+          @media only screen and (max-width: 768px) {
+            padding-left: 125px;
+            margin-bottom: 50px;
+          }
+          @media only screen and (max-width: 376px) {
+            flex-direction: column;
+            padding-left: 0;
+          }
 
           li {
             span {
@@ -368,12 +425,22 @@ export default {
       margin-top: 110px;
       gap: 30px;
       flex-direction: row;
+      @media only screen and (max-width: 768px) {
+        width: 768px;
+        gap: 20px;
+        margin: 0 39px;
+        margin-top: 170px;
+      }
       @media only screen and (max-width: 376px) {
         flex-direction: column;
+        margin: 0 24px;
         margin-top: 510px;
       }
       .left {
         gap: 30px;
+        @media only screen and (max-width: 768px) {
+          gap: 20px;
+        }
       }
 
       .img-left {
@@ -381,10 +448,14 @@ export default {
         width: 445px;
         height: 280px;
         border-radius: 8px;
+        @media only screen and (max-width: 768px) {
+          width: 277px;
+          height: 174px;
+          gap: 20px;
+        }
         @media only screen and (max-width: 376px) {
           width: 327px;
           height: 174px;
-          margin: 0 24px;
         }
       }
 
@@ -392,10 +463,14 @@ export default {
         width: 635px;
         height: 592px;
         border-radius: 8px;
+        @media only screen and (max-width: 768px) {
+          width: 395px;
+          height: 368px;
+        }
         @media only screen and (max-width: 376px) {
           width: 327px;
           height: 756px;
-          margin: 0 24px;
+          object-fit: cover;
         }
       }
     }
