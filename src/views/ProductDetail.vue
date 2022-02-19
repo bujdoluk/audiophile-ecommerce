@@ -1,6 +1,10 @@
 <template>
   <div class="products">
     <Navbar />
+    <transition name="success">
+      <SuccessNotification v-if="showSuccessNotification" />
+    </transition>
+
     <div class="back" @click="back()">Go back</div>
     <div class="content flex flex-column">
       <section class="product flex">
@@ -115,12 +119,21 @@ import Footer from "../components/Footer.vue";
 import Categories from "../components/Categories.vue";
 import Youmaylike from "../components/Youmaylike.vue";
 import { mapActions, mapGetters } from "vuex";
+import SuccessNotification from "../components/SuccessNotification.vue";
 export default {
   name: "ProductDetail",
-  components: { Navbar, Gear, Footer, Categories, Youmaylike },
+  components: {
+    Navbar,
+    Gear,
+    Footer,
+    Categories,
+    Youmaylike,
+    SuccessNotification,
+  },
   data() {
     return {
       counter: 1,
+      showSuccessNotification: false,
     };
   },
   methods: {
@@ -129,6 +142,8 @@ export default {
     addProductToCart(product) {
       this.addProduct(product);
       console.log(product.quantity);
+      this.showSuccessNotification = true;
+      setTimeout(() => (this.showSuccessNotification = false), 5000);
     },
 
     back() {
@@ -159,6 +174,30 @@ export default {
   background: #0e0e0e;
   height: 95px;
   margin: 0 auto;
+
+  // Success Notification transition
+  .success-enter-from {
+    opacity: 0.5;
+    transform: translateY(110px);
+  }
+  .success-enter-to {
+    opacity: 1;
+    transform: translateY(130px);
+  }
+  .success-enter-active {
+    transition: all 3s linear;
+  }
+
+  // .success-leave-from {
+  //   opacity: 1;
+  //   transform: translateY(130px);
+  // }
+
+  // .success-leave-to {
+  //   opacity: 0;
+  //   transform: translateY(100px);
+  //   transition: all 1.5s ease-out;
+  // }
 
   .title {
     height: 240px;

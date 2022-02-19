@@ -95,7 +95,8 @@ export default {
   margin-bottom: 64px;
   margin-top: 110px;
   @media only screen and (max-width: 768px) {
-    width: 300px;
+    width: 768px;
+    margin-bottom: 110px;
   }
   @media only screen and (max-width: 376px) {
     margin-bottom: 110px;

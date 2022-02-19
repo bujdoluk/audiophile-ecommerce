@@ -11,34 +11,38 @@
             <div class="flex flex-column">
               <div class="labels flex flex-row">
                 <label for="name">Name</label>
-                <label
-                  class="error"
-                  for="name"
-                  v-for="error of v$.person.name.$errors"
-                  :key="error.$uid"
-                  >{{ error.$message }}</label
-                >
+                <span class="error" v-if="v$.name.$error">
+                  {{ v$.name.$errors[0].$message }}
+                </span>
               </div>
 
-              <input class="right" type="text" v-model="name" />
+              <input type="text" v-model.trim="name" placeholder="   Lukáš" />
             </div>
             <div class="flex flex-column">
               <div class="labels flex flex-row">
-                <label for="">Email Address</label>
-                <label
-                  class="error"
-                  for="name"
-                  v-for="error of v$.person.email.$errors"
-                  :key="error.$uid"
-                  >{{ error.$message }}</label
-                >
+                <label for="email">Email Address</label>
+                <span class="error" v-if="v$.email.$error">
+                  {{ v$.email.$errors[0].$message }}
+                </span>
               </div>
-
-              <input type="email" v-model="email" />
+              <input
+                type="email"
+                v-model.trim="email"
+                placeholder="   lukas22@gmail.com"
+              />
             </div>
             <div class="flex flex-column">
-              <label for="">Phone Number</label>
-              <input type="text" v-model="phoneNumber" />
+              <div class="labels flex flex-row">
+                <label for="phoneNumber">Phone Number</label>
+                <span class="error" v-if="v$.phoneNumber.$error">
+                  {{ v$.phoneNumber.$errors[0].$message }}
+                </span>
+              </div>
+              <input
+                type="text"
+                v-model.trim="phoneNumber"
+                placeholder="   +0912 345 678"
+              />
             </div>
           </div>
         </div>
@@ -46,23 +50,61 @@
           <h5>Shipping Details</h5>
           <div class="shipping-details flex flex-column">
             <div class="flex flex-column">
-              <label for="">Address</label>
-              <input class="long" type="text" v-model="address" />
+              <div class="labels flex flex-row">
+                <label for="address">Address</label>
+                <span class="error" v-if="v$.address.$error">
+                  {{ v$.address.$errors[0].$message }}
+                </span>
+              </div>
+              <input
+                class="long"
+                type="text"
+                v-model.trim="address"
+                placeholder="   Široká 34"
+              />
             </div>
             <div class="zipcode flex">
               <div class="flex flex-column">
-                <label for="">ZIP Code</label>
-                <input class="right" type="text" v-model="zipcode" />
+                <div class="labels flex flex-row">
+                  <label for="zipcode">ZIP Code</label>
+                  <span class="error" v-if="v$.zipcode.$error">
+                    {{ v$.zipcode.$errors[0].$message }}
+                  </span>
+                </div>
+                <input
+                  class="short"
+                  type="text"
+                  v-model.trim="zipcode"
+                  placeholder="   044 10"
+                />
               </div>
               <div class="flex flex-column">
-                <label for="">City</label>
-                <input type="text" v-model="city" />
+                <div class="labels flex flex-row">
+                  <label for="city">City</label>
+                  <span class="error" v-if="v$.city.$error">
+                    {{ v$.city.$errors[0].$message }}
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  v-model.trim="city"
+                  placeholder="   Košice"
+                />
               </div>
             </div>
 
             <div class="flex flex-column">
-              <label for="">Country</label>
-              <input type="text" v-model="country" />
+              <div class="labels flex flex-row short">
+                <label for="country">Country</label>
+                <span class="error" v-if="v$.country.$error">
+                  {{ v$.country.$errors[0].$message }}
+                </span>
+              </div>
+              <input
+                type="text"
+                v-model.trim="country"
+                placeholder="   Slovakia"
+              />
             </div>
           </div>
         </div>
@@ -180,7 +222,7 @@
             type="submit"
             form="checkout"
             class="btn-orange btn"
-            @click.prevent="thankyouModal"
+            @click.prevent="submitForm"
           >
             Continue & pay
           </button>
@@ -196,14 +238,7 @@ import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 import { mapGetters, mapActions } from "vuex";
 import useValidate from "@vuelidate/core";
-import {
-  required,
-  minLength,
-  email,
-  alpha,
-  numeric,
-  helpers,
-} from "@vuelidate/validators";
+import { required, email, alpha, numeric } from "@vuelidate/validators";
 
 export default {
   name: "Checkout",
@@ -211,35 +246,36 @@ export default {
   data() {
     return {
       v$: useValidate(),
-      person: {
-        name: "",
-        email: "",
-        phoneNumber: "",
-        address: "",
-        zipcode: "",
-        city: "",
-        country: "",
-      },
+      name: "",
+      email: "",
+      phoneNumber: "",
+      address: "",
+      zipcode: "",
+      city: "",
+      country: "",
       mobileView: false,
       showMenu: false,
     };
   },
   validations() {
     return {
-      person: {
-        name: {
-          required: helpers.withMessage("First name is required", required),
-          alpha,
-          minLength: minLength(6),
-          $autoDirty: true,
-        },
-        email: { required, email, $autoDirty: true },
-        phoneNumber: { required, minLength: minLength(10), $autoDirty: true },
-        address: { required, $autoDirty: true },
-        zipcode: { required, numeric, $autoDirty: true },
-        city: { required, alpha, $autoDirty: true },
-        country: { required, alpha, $autoDirty: true },
+      name: { required, alpha, $autoDirty: true },
+      email: { required, email, $autoDirty: true },
+      phoneNumber: {
+        required,
+        numeric,
+
+        $autoDirty: true,
       },
+      address: { required, $autoDirty: true },
+      zipcode: {
+        required,
+        numeric,
+
+        $autoDirty: true,
+      },
+      city: { required, alpha, $autoDirty: true },
+      country: { required, alpha, $autoDirty: true },
     };
   },
   created() {
@@ -257,14 +293,13 @@ export default {
       this.toggleThankYouModal();
     },
 
-    // submitForm() {
-    //   this.v$.$validate();
-    //   if (!this.v$.$error) {
-    //     alert("Form successfully submitted.");
-    //   } else {
-    //     alert("Form not passed validation");
-    //   }
-    // },
+    async submitForm() {
+      const isFormCorrect = await this.v$.$validate();
+      //if (!this.v$.$error) return this.thankyouModal();
+      if (isFormCorrect) {
+        this.thankyouModal();
+      }
+    },
 
     back() {
       history.back();
@@ -367,11 +402,7 @@ export default {
       .billing {
         .billing-details {
           flex-wrap: wrap;
-
-          // Errors
-          .labels {
-            justify-content: space-between;
-          }
+          gap: 16px;
 
           input {
             cursor: pointer;
@@ -386,17 +417,31 @@ export default {
         .shipping-details {
           flex-wrap: wrap;
 
+          .long {
+            width: 634px;
+          }
+
+          .short {
+            width: 309px;
+          }
+
           .zipcode {
             flex-direction: row;
+            gap: 16px;
             @media only screen and (max-width: 376px) {
               flex-direction: column;
             }
           }
           input {
+            width: 309px;
             cursor: pointer;
             @media only screen and (max-width: 376px) {
               width: 280px;
             }
+          }
+
+          input:invalid {
+            border-color: 2px solid red;
           }
         }
       }

@@ -82,6 +82,8 @@ export default {
 
     closeThankYou() {
       this.toggleThankYouModal();
+      window.localStorage.clear();
+      this.getCart.length = 0;
     },
   },
   computed: {

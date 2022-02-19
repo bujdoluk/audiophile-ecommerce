@@ -17,12 +17,15 @@ import { mapState } from "vuex";
 import Navbar from "./components/Navbar.vue";
 import CartModal from "./views/CartModal.vue";
 import ThankyouModal from "./views/ThankyouModal.vue";
+
 export default {
   components: {
     Navbar,
     CartModal,
     ThankyouModal,
   },
+
+  methods: {},
   computed: {
     ...mapState(["cartModal", "thankyouModal"]),
   },
@@ -259,13 +262,17 @@ input {
   background: #ffffff;
   border: 2px solid #cfcfcf;
   border-radius: 8px;
-
   margin-bottom: 24px;
 }
 
 input:focus {
   border-color: #d87d4a;
   outline: none !important;
+}
+
+input:-moz-submit-invalid,
+input:invalid {
+  border-color: red;
 }
 
 label {
@@ -339,8 +346,16 @@ h6 {
 }
 
 // Errors
-
 .error {
   color: red;
+  font-size: 12px;
+}
+
+.error-input {
+  border: 1px solid red;
+}
+
+.labels {
+  justify-content: space-between;
 }
 </style>

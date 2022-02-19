@@ -1,6 +1,46 @@
 <template>
   <div class="nav">
     <div class="navbar flex flex-row">
+      <div id="sidemenu" v-if="mobileAndTabletView">
+        <button
+          class="sidemenu__btn"
+          @click="navOpen = !navOpen"
+          :class="{ active: navOpen }"
+        >
+          <span class="top"></span>
+          <span class="mid"></span>
+          <span class="bottom"></span>
+        </button>
+        <transition name="translateX">
+          <nav v-show="navOpen">
+            <div class="sidemenu__wrapper">
+              <ul class="sidemenu__list">
+                <li class="sidemenu__item">
+                  <router-link class="link" :to="{ name: 'Home' }">
+                    Home
+                  </router-link>
+                </li>
+                <li class="sidemenu__item">
+                  <router-link class="link" :to="{ name: 'Headphones' }">
+                    Headphones
+                  </router-link>
+                </li>
+                <li class="sidemenu__item">
+                  <router-link class="link" :to="{ name: 'Speakers' }">
+                    Speakers
+                  </router-link>
+                </li>
+                <li class="sidemenu__item">
+                  <router-link class="link" :to="{ name: 'Earphones' }">
+                    Earphones
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </transition>
+      </div>
+
       <div class="logo">
         <svg width="143" height="25" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -10,7 +50,7 @@
           />
         </svg>
       </div>
-      <div class="category flex flex-row" v-if="!mobileView">
+      <div class="category flex flex-row" v-if="!mobileAndTabletView">
         <div>
           <router-link class="link" :to="{ name: 'Home' }"> Home </router-link>
         </div>
@@ -48,12 +88,14 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
+  components: {},
   name: "Navbar",
   data() {
     return {
-      mobileView: false,
-      showMenu: false,
+      mobileAndTabletView: false,
+      navOpen: true,
     };
   },
 
@@ -65,7 +107,7 @@ export default {
     ...mapActions(["toggleCartModal", "toggleEmptyCartModal"]),
 
     checkView() {
-      this.mobileView = window.innerWidth <= 376;
+      this.mobileAndTabletView = window.innerWidth <= 768;
     },
 
     newCart() {
@@ -109,8 +151,8 @@ export default {
       width: 768px;
     }
     @media only screen and (max-width: 376px) {
-      padding: 35px 40px;
-      width: 376px;
+      max-width: 376px;
+      margin: 0;
     }
 
     .burger {
@@ -130,6 +172,9 @@ export default {
     .category {
       gap: 3.4rem;
       text-transform: uppercase;
+      @media only screen and (max-width: 376px) {
+        width: 376px;
+      }
     }
     .cart {
       cursor: pointer;
@@ -157,6 +202,108 @@ export default {
 
     .link:hover {
       color: #d87d4a;
+    }
+
+    // Burger Menu
+    #sidemenu {
+      nav {
+        width: 376px;
+
+        background: rgb(24, 24, 24);
+        position: fixed;
+        top: 80px;
+        left: 0;
+        z-index: 99;
+      }
+
+      .sidemenu {
+        &__btn {
+          display: block;
+          width: 50px;
+          height: 50px;
+          background: rgb(0, 0, 0);
+          border: none;
+          position: relative;
+          z-index: 100;
+          appearance: none;
+          cursor: pointer;
+          outline: none;
+
+          span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            margin: auto;
+            background: white;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: all 0.4s ease;
+
+            &.top {
+              transform: translateY(-8px);
+            }
+
+            &.bottom {
+              transform: translateY(8px);
+            }
+          }
+          &.active {
+            .top {
+              transform: rotate(-45deg);
+            }
+            .mid {
+              transform: translateX(-20px) rotate(360deg);
+              opacity: 0;
+            }
+            .bottom {
+              transform: rotate(45deg);
+            }
+          }
+        }
+
+        &__list {
+          padding-top: 50px;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        &__item {
+          a {
+            text-decoration: none;
+            line-height: 1.6em;
+            font-size: 1.6em;
+            padding: 0.5em;
+            display: block;
+            color: white;
+            transition: 0.4s ease;
+
+            &:hover {
+              background: #d87d4a;
+              color: rgb(0, 0, 0);
+            }
+          }
+        }
+      }
+    }
+
+    .translateX-enter {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+
+    .translateX-enter-active,
+    .translateX-leave-active {
+      transform-origin: top left 0;
+      transition: 0.2s ease;
+    }
+
+    .translateX-leave-to {
+      transform: translateX(-200px);
+      opacity: 0;
     }
   }
 }
