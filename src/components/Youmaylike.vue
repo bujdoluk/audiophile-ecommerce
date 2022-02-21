@@ -151,7 +151,9 @@ export default {
   }
 
   .item:last-child {
-    margin-bottom: 100px;
+    @media only screen and (max-width: 376px) {
+      margin-bottom: 100px;
+    }
   }
 }
 </style>

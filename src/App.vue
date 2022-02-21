@@ -15,8 +15,8 @@
 <script>
 import { mapState } from "vuex";
 import Navbar from "./components/Navbar.vue";
-import CartModal from "./views/CartModal.vue";
-import ThankyouModal from "./views/ThankyouModal.vue";
+import CartModal from "./components/CartModal.vue";
+import ThankyouModal from "./components/ThankyouModal.vue";
 
 export default {
   components: {

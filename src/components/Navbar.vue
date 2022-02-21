@@ -79,7 +79,7 @@
           />
         </svg>
         <span class="cart_amount" v-if="hasProductInCart()">
-          {{ getCart.length }}
+          {{ totalQuantity() }}
         </span>
       </div>
     </div>
@@ -117,6 +117,14 @@ export default {
     hasProductInCart() {
       return this.getCart.length > 0;
     },
+
+    totalQuantity() {
+      let totalQuantity = 0;
+      this.getCart.forEach((item, index) => {
+        totalQuantity += item.quantity;
+      });
+      return totalQuantity;
+    },
   },
   computed: {
     ...mapGetters(["getCart"]),
@@ -131,6 +139,8 @@ export default {
   z-index: 3;
   position: fixed;
   width: 100vw;
+  border-bottom: 1px solid #979797;
+  height: 96px;
 
   .navbar {
     width: 1440px;

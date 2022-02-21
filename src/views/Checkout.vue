@@ -183,11 +183,7 @@
             :key="index"
           >
             <div>
-              <img
-                class="img"
-                src="../assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg"
-                alt="img"
-              />
+              <img class="img" :src="product.image" alt="img" />
             </div>
             <div class="info flex flex-row">
               <div class="title-price flex flex-column">
@@ -311,29 +307,27 @@ export default {
 
     // shipping 50$ included
     totalPrice() {
-      return this.getCart.reduce((current, next) => current + next.price, 0);
+      let total = 0;
+      this.getCart.forEach((item, index) => {
+        total += item.price * item.quantity;
+      });
+      return total;
     },
 
     // shipping 50$ excluded
     VATPrice() {
       if (this.hasProductInCart()) {
-        return (
-          this.getCart.reduce((current, next) => current + next.price, 0) * 0.2
-        ).toFixed(2);
+        return (this.totalPrice() * 0.2).toFixed(2);
       } else {
-        this.getCart.reduce((current, next) => current + next.price, 0);
+        this.totalPrice();
       }
     },
 
     grandPrice() {
       if (this.hasProductInCart()) {
-        return (
-          this.getCart.reduce((current, next) => current + next.price, 0) *
-            1.2 +
-          50
-        ).toFixed(2);
+        return (this.totalPrice() * 1.2 + 50).toFixed(2);
       } else {
-        this.getCart.reduce((current, next) => current + next.price, 0);
+        this.totalPrice();
       }
     },
 

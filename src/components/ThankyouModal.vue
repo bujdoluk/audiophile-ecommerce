@@ -29,8 +29,27 @@
                 </div>
                 <div class="item">x{{ product.quantity }}</div>
               </div>
-              <div class="item">
-                <p>and {{ getCart.length - 1 }} other item(s)</p>
+              <div v-if="toggleOpen">
+                <div class="item" @click="toggleOtherItems">
+                  <p>and {{ getCart.length - 1 }} other item(s)</p>
+                </div>
+              </div>
+              <div v-else>
+                <div
+                  class="border flex flex-row"
+                  v-for="(product, index) in getCart.slice(1)"
+                  :key="index"
+                >
+                  <img class="img-cart" :src="product.image" />
+                  <div>
+                    <div>{{ product.name }}</div>
+                    <div class="item">$ {{ product.price }}</div>
+                  </div>
+                  <div class="item">x{{ product.quantity }}</div>
+                </div>
+                <div class="item" @click="toggleOtherItems">
+                  <p>View Less</p>
+                </div>
               </div>
             </div>
           </div>
@@ -54,12 +73,17 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
+import Navbar from "./Navbar.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ThankyouModal",
   components: {
     Navbar,
+  },
+  data() {
+    return {
+      toggleOpen: true,
+    };
   },
   methods: {
     ...mapActions(["toggleThankYouModal"]),
@@ -68,15 +92,23 @@ export default {
       return this.getCart.length > 0;
     },
 
+    toggleOtherItems() {
+      this.toggleOpen = !this.toggleOpen;
+    },
+
+    totalPrice() {
+      let total = 0;
+      this.getCart.forEach((item, index) => {
+        total += item.price * item.quantity;
+      });
+      return total;
+    },
+
     grandPrice() {
       if (this.hasProductInCart()) {
-        return (
-          this.getCart.reduce((current, next) => current + next.price, 0) *
-            1.2 +
-          50
-        ).toFixed(2);
+        return (this.totalPrice() * 1.2 + 50).toFixed(2);
       } else {
-        this.getCart.reduce((current, next) => current + next.price, 0);
+        this.totalPrice();
       }
     },
 
@@ -110,7 +142,7 @@ export default {
     z-index: 5;
     max-width: 100vw;
     width: 100%;
-    height: 1200px;
+    min-height: 1200px;
     background-color: transparent;
     @media only screen and (max-width: 376px) {
       width: 376px;
@@ -119,14 +151,14 @@ export default {
     .thankyou {
       padding: 48px 48px;
       position: absolute;
-      top: 120px;
+      top: 50px;
       left: 50%;
       transform: translate(-50%, 10%);
       margin: 0 auto;
       border-radius: 8px;
       background: #ffffff;
       width: 540px;
-      height: 581px;
+      min-height: 581px;
       z-index: 10;
       gap: 24px;
       @media only screen and (max-width: 376px) {
@@ -158,12 +190,14 @@ export default {
 
       .payment-detail {
         width: 444px;
-        height: 140px;
+        min-height: 140px;
+        max-height: 270px;
         z-index: 10;
         border-radius: 8px;
         background-color: transparent;
         font-weight: bold;
         flex-direction: row;
+
         @media only screen and (max-width: 376px) {
           flex-direction: column;
           width: 263px;
@@ -172,9 +206,17 @@ export default {
 
         .left {
           width: 246px;
+          min-height: 140px;
           background: #f1f1f1;
           color: #000000;
           border-radius: 8px 0 0 8px;
+
+          // Scrollbar
+          overflow-y: auto;
+          overflow-x: hidden;
+          scrollbar-width: thin;
+          scrollbar-color: rgba(0, 0, 0, 0.5) #d87d4a;
+
           @media only screen and (max-width: 376px) {
             width: 263px;
 
@@ -183,6 +225,7 @@ export default {
 
           .content {
             padding: 24px;
+
             .border {
               color: #000000;
               border-bottom: 1px solid grey;
@@ -200,11 +243,27 @@ export default {
               color: #000000;
               opacity: 0.5;
               margin-bottom: 8px;
+              cursor: pointer;
 
               p {
                 text-align: center;
               }
             }
+          }
+
+          // Styling scollbar on Chrome, Edge and Safari
+          *::-webkit-scrollbar {
+            width: 12px;
+          }
+
+          *::-webkit-scrollbar-track {
+            background: orange;
+          }
+
+          *::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            border: 3px solid #d87d4a;
           }
         }
 

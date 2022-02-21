@@ -6,7 +6,7 @@
       >
       <div class="cart flex flex-column" v-if="hasProductInCart()">
         <div class="cart-detail flex flex-row">
-          <div class="cart-name">Cart ({{ getCart.length }})</div>
+          <div class="cart-name">Cart ({{ totalQuantity() }})</div>
           <div class="grey" @click="removeAllProductsFromCart()">
             Remove all
           </div>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
+import Navbar from "./Navbar.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -58,7 +58,19 @@ export default {
     },
 
     totalPrice() {
-      return this.getCart.reduce((current, next) => current + next.price, 0);
+      let total = 0;
+      this.getCart.forEach((item, index) => {
+        total += item.price * item.quantity;
+      });
+      return total;
+    },
+
+    totalQuantity() {
+      let totalQuantity = 0;
+      this.getCart.forEach((item, index) => {
+        totalQuantity += item.quantity;
+      });
+      return totalQuantity;
     },
 
     removeAllProductsFromCart() {
@@ -112,6 +124,7 @@ export default {
       min-height: 230px;
       max-height: 650px;
       z-index: 10;
+      // Scrollbar
       overflow-y: auto;
       overflow-x: hidden;
       scrollbar-width: thin;
@@ -156,6 +169,7 @@ export default {
 
       .content-details {
         margin-bottom: 24px;
+        width: 313px;
 
         .img {
           width: 64px;
@@ -165,6 +179,11 @@ export default {
 
         .info {
           align-items: center;
+          width: 260px;
+          justify-content: space-between;
+          @media only screen and (max-width: 376px) {
+            width: 210px;
+          }
 
           .title-price {
             justify-content: flex-start;

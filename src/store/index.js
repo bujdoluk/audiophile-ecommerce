@@ -160,9 +160,19 @@ export default createStore({
     TOGGLE_THANKYOU_MODAL(state) {
       state.thankyouModal = !state.thankyouModal;
     },
-    ADD_PRODUCT: (state, product) => {
-      state.cart.push(product);
-      window.localStorage.setItem('cart', JSON.stringify(state.cart));
+    ADD_PRODUCT: (state, item) => {
+
+      let foundDuplicateProduct = state.cart.find(product => product.id == item.id);
+
+      if (foundDuplicateProduct) {
+        foundDuplicateProduct.quantity++;
+      } else {
+        state.cart.push(item);
+        window.localStorage.setItem('cart', JSON.stringify(state.cart));
+      }
+
+
+
     },
     DELETE_PRODUCT: (state, index) => {
       state.cart.splice(index, 1);

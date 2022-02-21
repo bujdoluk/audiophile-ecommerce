@@ -141,7 +141,6 @@ export default {
 
     addProductToCart(product) {
       this.addProduct(product);
-      console.log(product.quantity);
       this.showSuccessNotification = true;
       setTimeout(() => (this.showSuccessNotification = false), 5000);
     },
@@ -153,7 +152,7 @@ export default {
     increase(product) {
       this.counter++;
       product.quantity++;
-      console.log(product.quantity++);
+      window.localStorage;
     },
 
     decrease(product) {
