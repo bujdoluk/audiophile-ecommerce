@@ -5,6 +5,7 @@ import Earphones from '../views/Earphones.vue';
 import Speakers from '../views/Speakers.vue';
 import ProductDetail from '../views/ProductDetail.vue';
 import Checkout from '../views/Checkout.vue';
+import AllProducts from '../views/AllProducts.vue';
 
 const routes = [
   {
@@ -44,7 +45,15 @@ const routes = [
     name: 'ProductDetail',
     component: ProductDetail,
     meta: {
-      title: "ProductDetail",
+      title: "Product Detail",
+    }
+  },
+  {
+    path: '/allproducts',
+    name: 'AllProducts',
+    component: AllProducts,
+    meta: {
+      title: "All Products",
     }
   },
   {

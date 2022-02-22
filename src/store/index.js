@@ -4,6 +4,7 @@ let cart = window.localStorage.getItem('cart');
 
 export default createStore({
   state: {
+    modal: null,
     cartModal: null,
     thankyouModal: null,
     currentProduct: {},
@@ -19,6 +20,9 @@ export default createStore({
         imagedesktoplefttop: require('../assets/product-yx1-earphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-yx1-earphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-yx1-earphones/desktop/image-gallery-3.jpg'),
+        imagemobilelefttop: require('../assets/product-yx1-earphones/mobile/image-gallery-1.jpg'),
+        imagemobileleftbottom: require('../assets/product-yx1-earphones/mobile/image-gallery-2.jpg'),
+        imagemobileright: require('../assets/product-yx1-earphones/mobile/image-gallery-3.jpg'),
         text: 'Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.',
         quantity: 1,
         boxname1: 'Earphone Unit',
@@ -44,6 +48,9 @@ export default createStore({
         imagedesktoplefttop: require('../assets/product-xx59-headphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-xx59-headphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-xx59-headphones/desktop/image-gallery-3.jpg'),
+        imagemobilelefttop: require('../assets/product-xx59-headphones/mobile/image-gallery-1.jpg'),
+        imagemobileleftbottom: require('../assets/product-xx59-headphones/mobile/image-gallery-2.jpg'),
+        imagemobileright: require('../assets/product-xx59-headphones/mobile/image-gallery-3.jpg'),
         text: 'Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.',
         quantity: 1,
         boxname1: 'Headphone Unit',
@@ -65,6 +72,9 @@ export default createStore({
         imagedesktoplefttop: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-3.jpg'),
+        imagemobilelefttop: require('../assets/product-xx99-mark-one-headphones/mobile/image-gallery-1.jpg'),
+        imagemobileleftbottom: require('../assets/product-xx99-mark-one-headphones/mobile/image-gallery-2.jpg'),
+        imagemobileright: require('../assets/product-xx99-mark-one-headphones/mobile/image-gallery-3.jpg'),
         text: 'As the gold standart for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and musix adicionados alike in studios and on the go.',
         quantity: 1,
         boxname1: 'Headphone Unit',
@@ -86,6 +96,9 @@ export default createStore({
         imagedesktoplefttop: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg'),
+        imagemobilelefttop: require('../assets/product-xx99-mark-two-headphones/mobile/image-gallery-1.jpg'),
+        imagemobileleftbottom: require('../assets/product-xx99-mark-two-headphones/mobile/image-gallery-2.jpg'),
+        imagemobileright: require('../assets/product-xx99-mark-two-headphones/mobile/image-gallery-3.jpg'),
         text: ' The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium heaphone experience by repdocusing the balanced depth and precision of studio-quality sound.',
         quantity: 1,
         boxname1: 'Headphone Unit',
@@ -106,9 +119,12 @@ export default createStore({
         price: 3500,
         image: require('../assets/product-zx7-speaker/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-zx7-speaker.jpg'),
-        imagedesktoplefttop: require('../assets/product-zx7-speaker//desktop/image-gallery-1.jpg'),
-        imagedesktopleftbottom: require('../assets/product-zx7-speaker//desktop/image-gallery-2.jpg'),
-        imagedesktopright: require('../assets/product-zx7-speaker//desktop/image-gallery-3.jpg'),
+        imagedesktoplefttop: require('../assets/product-zx7-speaker/desktop/image-gallery-1.jpg'),
+        imagedesktopleftbottom: require('../assets/product-zx7-speaker/desktop/image-gallery-2.jpg'),
+        imagedesktopright: require('../assets/product-zx7-speaker/desktop/image-gallery-3.jpg'),
+        imagemobilelefttop: require('../assets/product-zx7-speaker/mobile/image-gallery-1.jpg'),
+        imagemobileleftbottom: require('../assets/product-zx7-speaker/mobile/image-gallery-2.jpg'),
+        imagemobileright: require('../assets/product-zx7-speaker/mobile/image-gallery-3.jpg'),
         text: 'Stream high quality sound wirelessly with minimal to no loss. The ZX7 speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.',
         quantity: 1,
         boxname1: 'Speaker Unit',
@@ -131,6 +147,9 @@ export default createStore({
         imagedesktoplefttop: require('../assets/product-zx9-speaker/desktop/image-gallery-1.jpg'),
         imagedesktopleftbottom: require('../assets/product-zx9-speaker/desktop/image-gallery-2.jpg'),
         imagedesktopright: require('../assets/product-zx9-speaker/desktop/image-gallery-3.jpg'),
+        imagemobilelefttop: require('../assets/product-zx9-speaker/mobile/image-gallery-1.jpg'),
+        imagemobileleftbottom: require('../assets/product-zx9-speaker/mobile/image-gallery-2.jpg'),
+        imagemobileright: require('../assets/product-zx9-speaker/mobile/image-gallery-3.jpg'),
         text: 'Upgrade your sound system with the all new ZX9 active speaker. It is a bookshelf speaker system that offers truly wireless connectivity - creating new possibilities for more pleasing and practical audio setups.',
         quantity: 1,
         boxname1: 'Speaker Unit',
@@ -154,6 +173,9 @@ export default createStore({
     getCurrentProduct: state => state.currentProduct,
   },
   mutations: {
+    TOGGLE_MODAL(state) {
+      state.modal = !state.modal;
+    },
     TOGGLE_CART_MODAL(state) {
       state.cartModal = !state.cartModal;
     },
@@ -190,6 +212,9 @@ export default createStore({
     },
     currentProduct: (context, product) => {
       context.commit('CURRENT_PRODUCT', product);
+    },
+    toggleModal: (context) => {
+      context.commit('TOGGLE_MODAL');
     },
     toggleCartModal: (context) => {
       context.commit('TOGGLE_CART_MODAL');

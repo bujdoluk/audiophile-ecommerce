@@ -35,6 +35,11 @@
                     Earphones
                   </router-link>
                 </li>
+                <li class="sidemenu__item">
+                  <router-link class="link" :to="{ name: 'AllProducts' }">
+                    All Products
+                  </router-link>
+                </li>
               </ul>
             </div>
           </nav>
@@ -67,6 +72,11 @@
         <div>
           <router-link class="link" :to="{ name: 'Earphones' }">
             Earphones
+          </router-link>
+        </div>
+        <div>
+          <router-link class="link" :to="{ name: 'AllProducts' }">
+            All Products
           </router-link>
         </div>
       </div>
