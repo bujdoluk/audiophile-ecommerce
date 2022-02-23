@@ -15,6 +15,9 @@ export default createStore({
         title: 'YX1 WIRELLESS EARPHONES',
         id: 1,
         price: 599,
+        sold: 24,
+        reviews: 92,
+        stars: 4.2,
         image: require('../assets/product-yx1-earphones/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-yx1-earphones.jpg'),
         imagedesktoplefttop: require('../assets/product-yx1-earphones/desktop/image-gallery-1.jpg'),
@@ -43,6 +46,9 @@ export default createStore({
         title: 'XX59 HEADPHONES',
         id: 2,
         price: 899,
+        sold: 52,
+        reviews: 215,
+        stars: 5,
         image: require('../assets/product-xx59-headphones/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-xx59-headphones.jpg'),
         imagedesktoplefttop: require('../assets/product-xx59-headphones/desktop/image-gallery-1.jpg'),
@@ -67,6 +73,9 @@ export default createStore({
         title: 'XX99 MARK I HEADPHONES',
         id: 3,
         price: 1750,
+        sold: 65,
+        reviews: 125,
+        stars: 3.4,
         image: require('../assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-xx99-mark-one-headphones.jpg'),
         imagedesktoplefttop: require('../assets/product-xx99-mark-one-headphones/desktop/image-gallery-1.jpg'),
@@ -91,6 +100,9 @@ export default createStore({
         title: 'XX99 MARK II HEADPHONES',
         id: 4,
         price: 2999,
+        sold: 12,
+        reviews: 42,
+        stars: 4.4,
         image: require('../assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-xx99-mark-two-headphones.jpg'),
         imagedesktoplefttop: require('../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg'),
@@ -117,6 +129,9 @@ export default createStore({
         title: 'ZX7 SPEAKER',
         id: 5,
         price: 3500,
+        sold: 8,
+        reviews: 45,
+        stars: 2,
         image: require('../assets/product-zx7-speaker/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-zx7-speaker.jpg'),
         imagedesktoplefttop: require('../assets/product-zx7-speaker/desktop/image-gallery-1.jpg'),
@@ -142,6 +157,9 @@ export default createStore({
         title: 'ZX9 SPEAKER',
         id: 6,
         price: 4500,
+        sold: 15,
+        reviews: 35,
+        stars: 3.8,
         image: require('../assets/product-zx9-speaker/desktop/image-category-page-preview.jpg'),
         imageCart: require('../assets/cart/image-zx9-speaker.jpg'),
         imagedesktoplefttop: require('../assets/product-zx9-speaker/desktop/image-gallery-1.jpg'),
@@ -192,9 +210,6 @@ export default createStore({
         state.cart.push(item);
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
       }
-
-
-
     },
     DELETE_PRODUCT: (state, index) => {
       state.cart.splice(index, 1);
@@ -202,6 +217,9 @@ export default createStore({
     CURRENT_PRODUCT: (state, product) => {
       state.currentProduct = product;
     },
+    // EMPTY_CURRENT_PRODUCT: (state) => {
+    //   state.currentProduct = null;
+    // }
   },
   actions: {
     addProduct: (context, product) => {
@@ -213,6 +231,9 @@ export default createStore({
     currentProduct: (context, product) => {
       context.commit('CURRENT_PRODUCT', product);
     },
+    // emptyCurrentProduct: (context, product) => {
+    //   context.commit('EMPTY_CURRENT_PRODUCT', product);
+    // },
     toggleModal: (context) => {
       context.commit('TOGGLE_MODAL');
     },

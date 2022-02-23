@@ -234,27 +234,6 @@ export default {
           width: 271px;
         }
       }
-
-      .close-modal {
-        width: 2rem;
-        height: 2rem;
-
-        position: absolute;
-        z-index: 99;
-        top: 0;
-        right: 0;
-        background-color: #d87d4a;
-        color: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .close-modal:hover {
-        transform: scale(140%);
-        transition: 0.25s ease-in-out;
-      }
     }
 
     .empty-cart {
