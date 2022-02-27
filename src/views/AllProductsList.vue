@@ -12,7 +12,7 @@
       </span>
       <div class="detail-info-title">{{ current.title }}</div>
 
-      <img :src="current.image" :alt="current.name" class="product-image" />
+      <img :src="current.image" :alt="current.name" class="detail-info-image" />
 
       <div class="detail-info-text">{{ current.text }}</div>
 
@@ -149,8 +149,8 @@ export default {
       border: 1px solid rgb(204, 204, 204);
       justify-content: space-evenly;
       &-image {
-        width: 270px;
-        height: 250px;
+        max-width: 200px;
+        max-height: 200px;
         border-radius: 8px;
       }
     }
@@ -167,13 +167,13 @@ export default {
 
   .detail-info {
     width: 400px;
-    height: 750px;
+    height: 550px;
     position: relative;
     z-index: 101;
     margin: 0 auto;
     padding: 20px 30px;
     background-color: #fff;
-    top: 150px;
+    top: 30px;
     border-radius: 8px;
     justify-content: space-evenly;
 
@@ -185,6 +185,7 @@ export default {
     li {
       list-style: decimal;
       margin-left: 15px;
+      font-size: 12px;
     }
 
     &-close {
@@ -194,8 +195,8 @@ export default {
     }
 
     &-image {
-      width: 300px;
-      height: 250px;
+      max-width: 340px;
+      max-height: 200px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -208,12 +209,13 @@ export default {
     &-text {
       font-style: normal;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 12px;
       opacity: 0.5;
     }
 
     &-sold {
       text-decoration: underline;
+      font-size: 12px;
     }
 
     .stars-box {

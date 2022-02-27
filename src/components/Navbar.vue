@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <div class="navbar flex flex-row">
+    <div class="navbar flex">
       <div id="sidemenu" v-if="mobileAndTabletView">
         <button
           class="sidemenu__btn"
@@ -151,12 +151,16 @@ export default {
   width: 100vw;
   border-bottom: 1px solid #979797;
   height: 96px;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
 
   .navbar {
     width: 1440px;
     height: 96px;
     border-bottom: 1px solid #979797;
     margin: 0 auto;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-style: normal;

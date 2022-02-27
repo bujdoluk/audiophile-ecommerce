@@ -198,6 +198,11 @@ export default {
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 180px;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 30px;
     @media only screen and (max-width: 376px) {
       height: 600px;
       margin-bottom: 120px;
