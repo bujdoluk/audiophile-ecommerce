@@ -2,7 +2,7 @@
 
 This project was created based on figma design from challenge on frontendmentor.io to practise my skills in frontend developement. It's a simple audio-ecommerce website.
 
-## Visit: audiophile-ecommerce-556bc.web.app
+## Visit: audiophile-ecommerce-556bc.firebaseapp.com
 
 ## Project setup
 ```
