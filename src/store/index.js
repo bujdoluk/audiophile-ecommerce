@@ -13,6 +13,7 @@ export default createStore({
       {
         name: 'YX1',
         title: 'YX1 WIRELLESS EARPHONES',
+        category: 'Earphone',
         id: 1,
         price: 599,
         sold: 24,
@@ -44,6 +45,7 @@ export default createStore({
       {
         name: 'XX59',
         title: 'XX59 HEADPHONES',
+        category: 'Headphone',
         id: 2,
         price: 899,
         sold: 52,
@@ -71,6 +73,7 @@ export default createStore({
       {
         name: 'XX99-mark-I',
         title: 'XX99 MARK I HEADPHONES',
+        category: 'Headphone',
         id: 3,
         price: 1750,
         sold: 65,
@@ -98,6 +101,7 @@ export default createStore({
       {
         name: 'XX99-mark-II',
         title: 'XX99 MARK II HEADPHONES',
+        category: 'Headphone',
         id: 4,
         price: 2999,
         sold: 12,
@@ -127,6 +131,7 @@ export default createStore({
       {
         name: 'ZX7',
         title: 'ZX7 SPEAKER',
+        category: 'Speaker',
         id: 5,
         price: 3500,
         sold: 8,
@@ -155,6 +160,7 @@ export default createStore({
       {
         name: 'ZX9',
         title: 'ZX9 SPEAKER',
+        category: 'Speaker',
         id: 6,
         price: 4500,
         sold: 15,

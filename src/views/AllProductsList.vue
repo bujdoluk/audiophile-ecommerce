@@ -6,6 +6,7 @@
     </transition>
 
     <div class="overlay" v-if="showModal" @click="showModal = false"></div>
+
     <div class="detail-info flex flex-column" v-if="showModal">
       <span class="detail-info-close close-modal" @click="showModal = false">
         &#x2715;
@@ -28,28 +29,51 @@
       <div class="detail-info-sold">Sold: {{ current.sold }}</div>
     </div>
 
-    <ul class="allproducts-list" v-if="!showModal">
-      <li
-        v-for="(product, index) in products"
-        :key="index"
-        class="product"
-        @click="addCurrentProduct(product)"
-      >
-        <img :src="product.image" alt="image" class="product-image" />
-        <button class="btn btn-white" @click="showModal = true">
-          View Details
-        </button>
-        <button
-          class="btn btn-orange"
-          @click="
-            addProductToCart(product);
-            showModal = false;
-          "
+    <div class="category flex flex-row" v-if="!showModal">
+      <div class="filter flex flex-column">
+        <label
+          ><input type="radio" v-model="selectedCategory" value="All" />
+          All</label
         >
-          Add to Cart
-        </button>
-      </li>
-    </ul>
+        <label
+          ><input type="radio" v-model="selectedCategory" value="Earphone" />
+          Earphones</label
+        >
+        <label
+          ><input type="radio" v-model="selectedCategory" value="Headphone" />
+          Headphones</label
+        >
+        <label
+          ><input type="radio" v-model="selectedCategory" value="Speaker" />
+          Speakers</label
+        >
+      </div>
+
+      <div class="flex flex-row">
+        <ul class="allproducts-list" v-if="!showModal">
+          <li
+            v-for="(product, index) in filteredProducts"
+            :key="index"
+            class="product"
+            @click="addCurrentProduct(product)"
+          >
+            <img :src="product.image" alt="image" class="product-image" />
+            <button class="btn btn-white" @click="showModal = true">
+              View Details
+            </button>
+            <button
+              class="btn btn-orange"
+              @click="
+                addProductToCart(product);
+                showModal = false;
+              "
+            >
+              Add to Cart
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -70,6 +94,7 @@ export default {
     return {
       showSuccessNotification: false,
       showModal: false,
+      selectedCategory: "All",
     };
   },
   methods: {
@@ -100,6 +125,18 @@ export default {
   },
   computed: {
     ...mapGetters({ current: "getCurrentProduct" }),
+
+    filteredProducts: function () {
+      let category = this.selectedCategory;
+
+      if (category === "All") {
+        return this.products;
+      } else {
+        return this.products.filter(function (data) {
+          return data.category === category;
+        });
+      }
+    },
   },
 };
 </script>
@@ -116,6 +153,49 @@ export default {
 }
 .success-enter-active {
   transition: all 3s linear;
+}
+
+.category {
+  margin: 0 auto;
+  width: 1300px;
+  .filter {
+    margin-top: 140px;
+    height: 120px;
+
+    label {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: 120px;
+      height: 20px;
+
+      font-size: 15px;
+      cursor: pointer;
+
+      input {
+        width: 15px;
+        height: 15px;
+        margin-right: 8px;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+
+      input[type="radio"] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        appearance: none;
+        /* For iOS < 15 to remove gradient background */
+        background-color: #fff;
+        /* Not removed via appearance */
+      }
+
+      input[type="radio"]:checked {
+        transform: scale(1.1);
+        background-color: #d87d4a;
+      }
+    }
+  }
 }
 
 .allproducts {
@@ -148,6 +228,8 @@ export default {
       border-radius: 8px;
       border: 1px solid rgb(204, 204, 204);
       justify-content: space-evenly;
+
+      margin-right: 30px;
       &-image {
         max-width: 200px;
         max-height: 200px;
